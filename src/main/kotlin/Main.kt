@@ -1,7 +1,7 @@
 package org.example
 
 fun main() {
-    var number = 7
+    val number = 7
     println("""
         $number x 1 = ${number * 1}
         $number x 2 = ${number * 2}
