@@ -1,12 +1,13 @@
 package org.example
 
 fun main() {
-    val from = "E2"
+    var from = "E2"
     var to = "E4"
     var moveNumber = 1
-    println("[$from-$to;$moveNumber]")
+    println("$from-$to;$moveNumber")
 
-    moveNumber++
+    from = "D2"
     to = "D3"
-    println("[$from-$to;$moveNumber]")
+    moveNumber = 2
+    println("$from-$to;$moveNumber")
 }
