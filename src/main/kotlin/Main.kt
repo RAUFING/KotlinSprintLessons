@@ -1,9 +1,9 @@
 package org.example
 
+const val TABLES = 13
+
 fun main() {
-    val tables = 13
     val todayBook = 13
     val tomorrowBook = 9
-    println("Доступность столиков на сегодня: ${todayBook < tables}")
-    println("Достпуность столиков на завтра: ${tomorrowBook < tables}")
+    println("[Доступность столиков на сегодня: ${todayBook < TABLES}]\n[Доступность столиков на завтра: ${tomorrowBook < TABLES}]")
 }
