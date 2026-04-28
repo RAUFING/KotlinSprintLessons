@@ -1,10 +1,13 @@
 package org.example
 
 fun main() {
-    val userName = "Иван"
-    // Объявляем переменные
-    var greeting = "Доброе утро"
-    println("$greeting, $userName!")
-    greeting = "Добрый вечер"
-    println("$greeting, $userName!")
+    var from = "E2"
+    var to = "E4"
+    var moveNumber = 1
+    println("$from-$to;$moveNumber")
+
+    from = "D2"
+    to = "D3"
+    moveNumber = 2
+    println("$from-$to;$moveNumber")
 }
