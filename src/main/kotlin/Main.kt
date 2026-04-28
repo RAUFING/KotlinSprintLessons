@@ -1,10 +1,13 @@
 package org.example
 
 fun main() {
-    val userName = "Иван"
-    // Объявляем переменные
-    var greeting = "Доброе утро"
-    println("$greeting, $userName!")
-    greeting = "Добрый вечер"
-    println("$greeting, $userName!")
+    val firstName = "Татьяна"
+    var lastName = "Андреева"
+    val middleName = "Сергеевна"
+    var age = 20
+    println("[$firstName $lastName $middleName, $age]")
+
+    age = 22
+    lastName = "Сидорова"
+    println("[$firstName $lastName $middleName, $age]")
 }
