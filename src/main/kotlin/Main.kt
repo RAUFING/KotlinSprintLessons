@@ -1,14 +1,13 @@
 package org.example
 
 fun main() {
-    var trainingDay = 5
-    val isArmsAndAbsDay = trainingDay % 2 != 0
-    val isLegsAndBackDay = trainingDay % 2 == 0
+    val trainingDay = 5
+    val isEven = trainingDay % 2 == 0
 
     println(
-        "Упражнения для рук: $isArmsAndAbsDay\n" +
-            "Упражнения для ног: $isLegsAndBackDay\n" +
-            "Упражнения для спины: $isLegsAndBackDay\n" +
-            "Упражнения для пресса: $isArmsAndAbsDay",
+        "Упражнения для рук: ${!isEven}\n" +
+            "Упражнения для ног: $isEven\n" +
+            "Упражнения для спины: $isEven\n" +
+            "Упражнения для пресса: ${!isEven}",
     )
 }
