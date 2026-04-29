@@ -1,10 +1,13 @@
 package org.example
 
 fun main() {
-    val userName = "Иван"
-    // Объявляем переменные
-    var greeting = "Доброе утро"
-    println("$greeting, $userName!")
-    greeting = "Добрый вечер"
-    println("$greeting, $userName!")
+    val trainingDay = 5
+    val isEven = trainingDay % 2 == 0
+
+    println(
+        "Упражнения для рук:    ${!isEven}\n" +
+            "Упражнения для ног:    $isEven\n" +
+            "Упражнения для спины:  $isEven\n" +
+            "Упражнения для пресса: ${!isEven}",
+    )
 }
