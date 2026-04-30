@@ -1,13 +1,13 @@
 package org.example
 
 fun main() {
-    val trainingDay = 5
-    val isEven = trainingDay % 2 == 0
+    val isDamaged = readln().toBoolean()
+    val crewCount = readln().toInt()
+    val provisionBoxes = readln().toInt()
+    val isWeatherGood = readln().toBoolean()
 
     println(
-        "Упражнения для рук:    ${!isEven}\n" +
-            "Упражнения для ног:    $isEven\n" +
-            "Упражнения для спины:  $isEven\n" +
-            "Упражнения для пресса: ${!isEven}",
+        "Корабль может отправиться в плавание: " +
+            "${(!isDamaged && crewCount in 55..70 && provisionBoxes > 50 && (isWeatherGood || !isWeatherGood)) || (isDamaged && crewCount == 70 && isWeatherGood && provisionBoxes >= 50)}",
     )
 }
