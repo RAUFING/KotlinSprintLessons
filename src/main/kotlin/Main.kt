@@ -1,11 +1,12 @@
 package org.example
 
-const val CORRECT_ANSWER = 4
-
 fun main() {
-    println("Уважаемый пользователь! Докажите что вы не бот. Решите пример: 2+2")
+    val number1 = 2
+    val number2 = 2
+    val correctAnswer = number1 + number2
+    println("Уважаемый пользователь! Докажите что вы не бот. Решите пример: $number1 + $number2")
     val input = readln().toInt()
-    if (input == CORRECT_ANSWER) {
+    if (input == correctAnswer) {
         println("Добро пожаловать!")
     } else {
         println("Доступ запрещен.")
