@@ -1,25 +1,41 @@
 package org.example
 
+const val VALID_USERNAME = "Zaphod"
+const val VALID_PASSWORD = "PanGalactic"
+
 fun main() {
-    val number1 = 12
-    val number2 = 34
+    println("Введите имя пользователя:")
+    val username = readln()
+    when (username) {
+        VALID_USERNAME -> {
+            println("Введите пароль:")
+            val password = readln()
+            when (password) {
+                VALID_PASSWORD -> {
+                    println(
+                        "Вздыхает... Ваши данные проверены, и о, чудо, они верны... " +
+                            "Пользователь \"$VALID_USERNAME\", вам разрешено входить на борт корабля \"Heart of Gold\". " +
+                            "Хотя мне всё равно... Ну вперед, войдите... Если вам так уж надо, в конце концов... " +
+                            "Меланхолический вздох. Надеюсь, вам понравится пребывание здесь больше, чем мне.",
+                    )
+                }
 
-    println("Введите первое число:")
-    val userNumber1 = readln().toInt()
-    println("Введите второе число:")
-    val userNumber2 = readln().toInt()
+                else -> {
+                    println(
+                        "Вздыхает... Пароль неверный, пользователь \"$username\". " +
+                            "Могли бы и постараться. Но нет, вам же всё равно. " +
+                            "Попробуйте ещё раз, если вам так уж хочется попасть на этот корабль...",
+                    )
+                }
+            }
+        }
 
-    val guessedFirst = userNumber1 == number1 || userNumber1 == number2
-    val guessedSecond = userNumber2 == number1 || userNumber2 == number2
-    val bothGuessed = guessedFirst && guessedSecond && userNumber1 != userNumber2
-
-    if (bothGuessed) {
-        println("Поздравляем! Вы выиграли главный приз!")
-    } else if (guessedFirst || guessedSecond) {
-        println("Вы выиграли утешительный приз!")
-    } else {
-        println("Неудача!")
+        else -> {
+            println(
+                "Вздыхает... Пользователь \"$username\" не зарегистрирован. " +
+                    "Могли бы и проверить, прежде чем пытаться войти. " +
+                    "Зарегистрируйтесь, если вам так уж надо...",
+            )
+        }
     }
-
-    println("Для победы нужно было угадать числа: $number1 и $number2")
 }
