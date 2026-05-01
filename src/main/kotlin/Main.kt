@@ -1,40 +1,32 @@
 package org.example
 
-const val VALID_USERNAME = "Zaphod"
-const val VALID_PASSWORD = "PanGalactic"
+import kotlin.random.Random
 
 fun main() {
-    println("Введите имя пользователя:")
-    when (val username = readln()) {
-        VALID_USERNAME -> {
-            println("Введите пароль:")
-            val password = readln()
-            when (password) {
-                VALID_PASSWORD -> {
-                    println(
-                        "Вздыхает... Ваши данные проверены, и о, чудо, они верны... " +
-                            "Пользователь \"$VALID_USERNAME\", вам разрешено входить на борт корабля \"Heart of Gold\". " +
-                            "Хотя мне всё равно... Ну вперед, войдите... Если вам так уж надо, в конце концов... " +
-                            "Меланхолический вздох. Надеюсь, вам понравится пребывание здесь больше, чем мне.",
-                    )
-                }
+    val winningNumbers =
+        listOf(
+            Random.nextInt(0, 43),
+            Random.nextInt(0, 43),
+            Random.nextInt(0, 43),
+        )
 
-                else -> {
-                    println(
-                        "Вздыхает... Пароль неверный, пользователь \"$username\". " +
-                            "Могли бы и постараться. Но нет, вам же всё равно. " +
-                            "Попробуйте ещё раз, если вам так уж хочется попасть на этот корабль...",
-                    )
-                }
-            }
-        }
+    println("Введите первое число (от 0 до 42):")
+    val userInput1 = readln().toInt()
+    println("Введите второе число (от 0 до 42):")
+    val userInput2 = readln().toInt()
+    println("Введите третье число (от 0 до 42):")
+    val userInput3 = readln().toInt()
 
-        else -> {
-            println(
-                "Вздыхает... Пользователь \"$username\" не зарегистрирован. " +
-                    "Могли бы и проверить, прежде чем пытаться войти. " +
-                    "Зарегистрируйтесь, если вам так уж надо...",
-            )
-        }
+    val userNumbers = listOf(userInput1, userInput2, userInput3)
+    val matchedNumbers = winningNumbers.intersect(userNumbers.toSet())
+    val matchCount = matchedNumbers.size
+
+    when (matchCount) {
+        3 -> println("Поздравляем! Вы угадали все три числа и выиграли джекпот!")
+        2 -> println("Вы угадали два числа и выиграли крупный приз!")
+        1 -> println("Вы угадали одно число и получаете утешительный приз!")
+        else -> println("К сожалению, вы не угадали ни одного числа.")
     }
+
+    println("Выигрышные числа: ${winningNumbers.joinToString()}")
 }
