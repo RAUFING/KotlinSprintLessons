@@ -5,8 +5,7 @@ const val VALID_PASSWORD = "PanGalactic"
 
 fun main() {
     println("Введите имя пользователя:")
-    val username = readln()
-    when (username) {
+    when (val username = readln()) {
         VALID_USERNAME -> {
             println("Введите пароль:")
             val password = readln()
