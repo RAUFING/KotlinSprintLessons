@@ -1,14 +1,14 @@
 package org.example
 
+const val AGE_OF_MAJORITY = 18
+
 fun main() {
-    val number1 = 2
-    val number2 = 2
-    val correctAnswer = number1 + number2
-    println("Уважаемый пользователь! Докажите что вы не бот. Решите пример: $number1 + $number2")
+    val currentYear = 2026
     val input = readln().toInt()
-    if (input == correctAnswer) {
-        println("Добро пожаловать!")
+    val age = currentYear - input
+    if (age >= AGE_OF_MAJORITY) {
+        println("Показать экран со скрытым контентом")
     } else {
-        println("Доступ запрещен.")
+        println("Доступ ограничен")
     }
 }
