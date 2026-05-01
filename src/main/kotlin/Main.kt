@@ -1,10 +1,25 @@
 package org.example
 
 fun main() {
-    val userName = "Иван"
-    // Объявляем переменные
-    var greeting = "Доброе утро"
-    println("$greeting, $userName!")
-    greeting = "Добрый вечер"
-    println("$greeting, $userName!")
+    val number1 = 12
+    val number2 = 34
+
+    println("Введите первое число:")
+    val userNumber1 = readln().toInt()
+    println("Введите второе число:")
+    val userNumber2 = readln().toInt()
+
+    val guessedFirst = userNumber1 == number1 || userNumber1 == number2
+    val guessedSecond = userNumber2 == number1 || userNumber2 == number2
+    val bothGuessed = guessedFirst && guessedSecond && userNumber1 != userNumber2
+
+    if (bothGuessed) {
+        println("Поздравляем! Вы выиграли главный приз!")
+    } else if (guessedFirst || guessedSecond) {
+        println("Вы выиграли утешительный приз!")
+    } else {
+        println("Неудача!")
+    }
+
+    println("Для победы нужно было угадать числа: $number1 и $number2")
 }
