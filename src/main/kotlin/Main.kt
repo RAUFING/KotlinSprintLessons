@@ -2,7 +2,7 @@ package org.example
 
 fun main() {
     val number1 = 12
-    val number2 = 56
+    val number2 = 34
 
     println("Введите первое число:")
     val userNumber1 = readln().toInt()
@@ -11,8 +11,9 @@ fun main() {
 
     val guessedFirst = userNumber1 == number1 || userNumber1 == number2
     val guessedSecond = userNumber2 == number1 || userNumber2 == number2
+    val bothGuessed = guessedFirst && guessedSecond && userNumber1 != userNumber2
 
-    if (guessedFirst && guessedSecond) {
+    if (bothGuessed) {
         println("Поздравляем! Вы выиграли главный приз!")
     } else if (guessedFirst || guessedSecond) {
         println("Вы выиграли утешительный приз!")
