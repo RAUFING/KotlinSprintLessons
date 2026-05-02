@@ -15,10 +15,6 @@ fun main() {
         inputLogin = readln()
         println("Введите пароль:")
         inputPassword = readln()
-
-        if (inputLogin != login || inputPassword != password) {
-            println("Данные не верны, попробуйте еще раз")
-        }
     } while (inputLogin != login || inputPassword != password)
 
     println("Авторизация прошла успешно")
