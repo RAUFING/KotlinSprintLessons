@@ -1,10 +1,21 @@
 package org.example
 
 fun main() {
-    val userName = "Иван"
-    // Объявляем переменные
-    var greeting = "Доброе утро"
-    println("$greeting, $userName!")
-    greeting = "Добрый вечер"
-    println("$greeting, $userName!")
+    println("Придумайте логин:")
+    val login = readln()
+    println("Придумайте пароль:")
+    val password = readln()
+    println("Отлично, теперь войдите")
+
+    var inputLogin: String
+    var inputPassword: String
+
+    do {
+        println("Введите логин:")
+        inputLogin = readln()
+        println("Введите пароль:")
+        inputPassword = readln()
+    } while (inputLogin != login || inputPassword != password)
+
+    println("Авторизация прошла успешно")
 }
