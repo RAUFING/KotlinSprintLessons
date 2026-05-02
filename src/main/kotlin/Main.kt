@@ -4,11 +4,10 @@ fun main() {
     println("Угадай число от 1 до 9")
     val number = (1..9).random()
     var attempts = 5
-    var guess: Int
 
     while (attempts > 0) {
         println("Введите число:")
-        guess = readln().toInt()
+        val guess = readln().toInt()
         attempts--
         if (guess != number) {
             println("Неверно, осталось попыток: $attempts")
@@ -17,5 +16,6 @@ fun main() {
             return
         }
     }
+
     println("Было загадано число $number")
 }
