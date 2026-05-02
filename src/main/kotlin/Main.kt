@@ -1,10 +1,14 @@
 package org.example
 
 fun main() {
-    val userName = "Иван"
-    // Объявляем переменные
-    var greeting = "Доброе утро"
-    println("$greeting, $userName!")
-    greeting = "Добрый вечер"
-    println("$greeting, $userName!")
+    println("Сколько секунд вы хотите засечь?")
+    var userSeconds = readln().toInt()
+
+    while (userSeconds > 0) {
+        println("Осталось секунд: $userSeconds")
+        Thread.sleep(1000)
+        userSeconds--
+    }
+
+    println("Время вышло")
 }
