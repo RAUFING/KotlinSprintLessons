@@ -1,21 +1,13 @@
 package org.example
 
 fun main() {
-    println("Придумайте логин:")
-    val login = readln()
-    println("Придумайте пароль:")
-    val password = readln()
-    println("Отлично, теперь войдите")
+    println("Сколько секунд вы хотите засечь?")
+    val userSeconds = readln().toInt()
+    var remainingSeconds = userSeconds
 
-    var inputLogin: String
-    var inputPassword: String
-
-    do {
-        println("Введите логин:")
-        inputLogin = readln()
-        println("Введите пароль:")
-        inputPassword = readln()
-    } while (inputLogin != login || inputPassword != password)
-
-    println("Авторизация прошла успешно")
+    while (remainingSeconds > 0) {
+        remainingSeconds--
+        Thread.sleep(1000)
+    }
+    println("Прошло $userSeconds секунд")
 }
