@@ -9,5 +9,6 @@ fun main() {
         remainingSeconds--
         Thread.sleep(1000)
     }
+
     println("Прошло $userSeconds секунд")
 }
