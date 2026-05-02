@@ -1,14 +1,21 @@
 package org.example
 
 fun main() {
-    println("Сколько секунд вы хотите засечь?")
-    var userSeconds = readln().toInt()
+    println("Угадай число от 1 до 9")
+    val number = (1..9).random()
+    var attempts = 5
+    var guess: Int
 
-    while (userSeconds > 0) {
-        println("Осталось секунд: $userSeconds")
-        Thread.sleep(1000)
-        userSeconds--
+    while (attempts > 0) {
+        println("Введите число:")
+        guess = readln().toInt()
+        attempts--
+        if (guess != number) {
+            println("Неверно, осталось попыток: $attempts")
+        } else {
+            println("Это была великолепная игра!")
+            return
+        }
     }
-
-    println("Время вышло")
+    println("Было загадано число $number")
 }
