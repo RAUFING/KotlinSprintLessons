@@ -1,10 +1,14 @@
 package org.example
 
 fun main() {
-    val userName = "Иван"
-    // Объявляем переменные
-    var greeting = "Доброе утро"
-    println("$greeting, $userName!")
-    greeting = "Добрый вечер"
-    println("$greeting, $userName!")
+    var code: Int
+    var userInput: Int
+
+    do {
+        code = (1000..9999).random()
+        println("Ваш код авторизации: $code")
+        userInput = readln().toInt()
+    } while (userInput != code)
+
+    println("Добро пожаловать!")
 }
