@@ -5,10 +5,10 @@ const val PASSWORD_SIZE = 6
 fun main() {
     val symbols = 'a'..'z'
     val numbers = '0'..'9'
-    var pin = ""
+    var password = ""
 
     for (i in 1..PASSWORD_SIZE) {
-        pin +=
+        password +=
             if (i % 2 == 0) {
                 numbers.random()
             } else {
@@ -16,5 +16,5 @@ fun main() {
             }
     }
 
-    println(pin)
+    println(password)
 }
