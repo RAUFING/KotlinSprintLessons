@@ -1,10 +1,12 @@
 package org.example
 
 fun main() {
-    val userName = "Иван"
-    // Объявляем переменные
-    var greeting = "Доброе утро"
-    println("$greeting, $userName!")
-    greeting = "Добрый вечер"
-    println("$greeting, $userName!")
+    val ingredients = arrayOf("мука", "сахар", "яйца", "молоко", "масло")
+    println("Введите название ингредиента:")
+    val query = readln()
+    if (query in ingredients) {
+        println("Ингредиент $query в рецепте есть")
+    } else {
+        println("Такого ингредиента в рецепте нет")
+    }
 }
