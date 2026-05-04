@@ -1,10 +1,6 @@
 package org.example
 
 fun main() {
-    val userName = "Иван"
-    // Объявляем переменные
-    var greeting = "Доброе утро"
-    println("$greeting, $userName!")
-    greeting = "Добрый вечер"
-    println("$greeting, $userName!")
+    val adsViewsWeek = arrayOf(1200, 200, 500, 300, 900, 2000, 1900)
+    println(adsViewsWeek.sum())
 }
