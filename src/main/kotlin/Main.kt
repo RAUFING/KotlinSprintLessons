@@ -1,6 +1,21 @@
 package org.example
 
 fun main() {
-    val adsViewsWeek = arrayOf(1200, 200, 500, 300, 900, 2000, 1900)
-    println(adsViewsWeek.sum())
+    val ingredients = arrayOf("мука", "сахар", "яйца", "молоко", "масло")
+    println("Введите название ингредиента:")
+    val query = readln()
+    var found = false
+
+    for (ingredient in ingredients) {
+        if (ingredient.equals(query, ignoreCase = true)) {
+            found = true
+            break
+        }
+    }
+
+    if (found) {
+        println("Ингредиент $query в рецепте есть")
+    } else {
+        println("Такого ингредиента в рецепте нет")
+    }
 }
