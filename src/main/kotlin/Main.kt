@@ -10,8 +10,9 @@ fun main() {
         println("Введите новый ингредиент:")
         val newIngredient = readln()
         ingredients[index] = newIngredient
+        println("Готово! Вы сохранили следующий список: [${ingredients.joinToString(", ")}]")
     } else {
         println("Такого ингредиента нет в списке")
     }
-    println("Готово! Вы сохранили следующий список: [${ingredients.joinToString(", ")}]")
+
 }
