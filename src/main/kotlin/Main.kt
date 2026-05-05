@@ -3,13 +3,15 @@ package org.example
 fun main() {
     val ingredients = arrayOf("мука", "сахар", "яйца", "молоко", "масло")
     println(ingredients.joinToString(", "))
-    println("Какой ингридиент вы хотите удалить?")
+    println("Какой ингредиент вы хотите заменить?")
     val queryIngredient = readln()
-    if (queryIngredient in ingredients) {
-        val queryReplaceIngredient = readln()
-        ingredients[ingredients.indexOf(queryIngredient)] = queryReplaceIngredient
+    val index = ingredients.indexOf(queryIngredient)
+    if (index != -1) {
+        println("Введите новый ингредиент:")
+        val newIngredient = readln()
+        ingredients[index] = newIngredient
     } else {
         println("Такого ингредиента нет в списке")
     }
-    println("Готов! Вы сохранили следущий список: [${ingredients.joinToString(", ")}]")
+    println("Готово! Вы сохранили следующий список: [${ingredients.joinToString(", ")}]")
 }
