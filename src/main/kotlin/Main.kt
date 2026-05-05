@@ -1,10 +1,17 @@
 package org.example
 
 fun main() {
-    val userName = "Иван"
-    // Объявляем переменные
-    var greeting = "Доброе утро"
-    println("$greeting, $userName!")
-    greeting = "Добрый вечер"
-    println("$greeting, $userName!")
+    val ingredients = arrayOf("мука", "сахар", "яйца", "молоко", "масло")
+    println(ingredients.joinToString(", "))
+    println("Какой ингредиент вы хотите заменить?")
+    val queryIngredient = readln()
+    val index = ingredients.indexOf(queryIngredient)
+    if (index != -1) {
+        println("Введите новый ингредиент:")
+        val newIngredient = readln()
+        ingredients[index] = newIngredient
+        println("Готово! Вы сохранили следующий список: [${ingredients.joinToString(", ")}]")
+    } else {
+        println("Такого ингредиента нет в списке")
+    }
 }
