@@ -1,4 +1,4 @@
-package org.example
+package org.example.com
 
 fun main() {
     val ingredients = mutableSetOf<String>()
