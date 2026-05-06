@@ -1,17 +1,14 @@
 package org.example
 
 fun main() {
-    val ingredients = arrayOf("мука", "сахар", "яйца", "молоко", "масло")
-    println(ingredients.joinToString(", "))
-    println("Какой ингредиент вы хотите заменить?")
-    val queryIngredient = readln()
-    val index = ingredients.indexOf(queryIngredient)
-    if (index != -1) {
-        println("Введите новый ингредиент:")
-        val newIngredient = readln()
-        ingredients[index] = newIngredient
-        println("Готово! Вы сохранили следующий список: [${ingredients.joinToString(", ")}]")
-    } else {
-        println("Такого ингредиента нет в списке")
+    println("Введите количество ингредиентов:")
+    val size = readln().toInt()
+    val ingredients = arrayOfNulls<String>(size)
+
+    for (i in 0 until size) {
+        println("Введите ингредиент ${i + 1}:")
+        ingredients[i] = readln()
     }
+
+    println("Список ингредиентов: ${ingredients.joinToString(", ")}")
 }
