@@ -1,19 +1,14 @@
 package org.example
 
 fun main() {
-    val baseIngredients = mutableListOf("мука", "яйца", "молоко")
-    println("В рецепте есть базовые ингредиенты: [${baseIngredients.joinToString(", ")}]")
+    val omeletteForOne = listOf(2, 50, 15)
+    println("Введите количество порций:")
+    val portions = readln().toInt()
 
-    println("Желаете добавить еще?")
-    val answer = readln()
-
-    if (!answer.equals("да", ignoreCase = true)) {
-        return
-    }
-
-    println("Какой ингредиент вы хотите добавить?")
-    val newIngredient = readln()
-    baseIngredients.add(newIngredient)
-
-    println("Теперь в рецепте есть следующие ингредиенты: [${baseIngredients.joinToString(", ")}]")
+    println(
+        "На $portions порций вам понадобится: " +
+                "Яиц – ${omeletteForOne[0] * portions}, " +
+                "молока – ${omeletteForOne[1] * portions}, " +
+                "сливочного масла – ${omeletteForOne[2] * portions}"
+    )
 }
