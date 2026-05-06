@@ -1,14 +1,7 @@
 package org.example
 
 fun main() {
-    println("Введите количество ингредиентов:")
-    val size = readln().toInt()
-    val ingredients = arrayOfNulls<String>(size)
-
-    for (i in 0 until size) {
-        println("Введите ингредиент ${i + 1}:")
-        ingredients[i] = readln()
-    }
-
-    println("Список ингредиентов: ${ingredients.joinToString(", ")}")
+    val ingredients = listOf("мука", "яйца", "молоко")
+    println("В рецепте есть следующие ингредиенты: ${ingredients.joinToString(", ")}")
+    ingredients.forEach { println(it) }
 }
