@@ -1,21 +1,18 @@
 package org.example
 
-fun rollDice(): Int {
-    return (1..6).random()
+fun isValidLength(input: String): Boolean {
+    return input.length >= 4
 }
 
 fun main() {
-    println("Ход игрока...")
-    val playerRoll = rollDice()
-    println("Игрок выбросил: $playerRoll")
+    println("Придумайте логин:")
+    val login = readln()
+    println("Придумайте пароль:")
+    val password = readln()
 
-    println("Ход компьютера...")
-    val computerRoll = rollDice()
-    println("Компьютер выбросил: $computerRoll")
-
-    when {
-        playerRoll > computerRoll -> println("Победило человечество")
-        computerRoll > playerRoll -> println("Победила машина")
-        else -> println("Победила дружба")
+    if (isValidLength(login) && isValidLength(password)) {
+        println("Добро пожаловать!")
+    } else {
+        println("Логин или пароль недостаточно длинные")
     }
 }
