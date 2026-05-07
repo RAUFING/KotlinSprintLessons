@@ -1,14 +1,21 @@
 package org.example
 
+fun rollDice(): Int {
+    return (1..6).random()
+}
+
 fun main() {
-    val ingredients = sortedSetOf<String>()
+    println("Ход игрока...")
+    val playerRoll = rollDice()
+    println("Игрок выбросил: $playerRoll")
 
-    repeat(5) {
-        println("Введите ингредиент ${it + 1}:")
-        ingredients.add(readln().trim())
+    println("Ход компьютера...")
+    val computerRoll = rollDice()
+    println("Компьютер выбросил: $computerRoll")
+
+    when {
+        playerRoll > computerRoll -> println("Победило человечество")
+        computerRoll > playerRoll -> println("Победила машина")
+        else -> println("Победила дружба")
     }
-
-    val result = ingredients.joinToString(", ")
-        .replaceFirstChar { it.uppercase() }
-    println(result)
 }
