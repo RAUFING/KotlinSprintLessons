@@ -1,10 +1,14 @@
 package org.example
 
 fun main() {
-    val userName = "Иван"
-    // Объявляем переменные
-    var greeting = "Доброе утро"
-    println("$greeting, $userName!")
-    greeting = "Добрый вечер"
-    println("$greeting, $userName!")
+    val ingredients = sortedSetOf<String>()
+
+    repeat(5) {
+        println("Введите ингредиент ${it + 1}:")
+        ingredients.add(readln().trim())
+    }
+
+    val result = ingredients.joinToString(", ")
+        .replaceFirstChar { it.uppercase() }
+    println(result)
 }
