@@ -1,10 +1,16 @@
 package org.example
 
+const val MIN_LENGTH = 4
+fun isValidLength(input: String): Boolean = input.length >= MIN_LENGTH
 fun main() {
-    val userName = "Иван"
-    // Объявляем переменные
-    var greeting = "Доброе утро"
-    println("$greeting, $userName!")
-    greeting = "Добрый вечер"
-    println("$greeting, $userName!")
+    println("Придумайте логин:")
+    val login = readln()
+    println("Придумайте пароль:")
+    val password = readln()
+
+    if (isValidLength(login) && isValidLength(password)) {
+        println("Добро пожаловать!")
+    } else {
+        println("Логин или пароль недостаточно длинные")
+    }
 }
