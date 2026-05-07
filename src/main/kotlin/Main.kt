@@ -1,9 +1,7 @@
 package org.example
 
-fun isValidLength(input: String): Boolean {
-    return input.length >= 4
-}
-
+const val MIN_LENGTH = 4
+fun isValidLength(input: String): Boolean = input.length >= MIN_LENGTH
 fun main() {
     println("Придумайте логин:")
     val login = readln()
