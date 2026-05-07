@@ -1,16 +1,14 @@
 package org.example
 
 fun main() {
-    val ingredients = mutableSetOf<String>()
+    val ingredients = sortedSetOf<String>()
 
     repeat(5) {
         println("Введите ингредиент ${it + 1}:")
-        ingredients.add(readln())
+        ingredients.add(readln().trim())
     }
 
-    val result = ingredients.sorted()
-        .joinToString(", ")
+    val result = ingredients.joinToString(", ")
         .replaceFirstChar { it.uppercase() }
-
     println(result)
 }
