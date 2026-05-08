@@ -1,16 +1,24 @@
 package org.example
 
-const val MIN_LENGTH = 4
-fun isValidLength(input: String): Boolean = input.length >= MIN_LENGTH
-fun main() {
-    println("Придумайте логин:")
-    val login = readln()
-    println("Придумайте пароль:")
-    val password = readln()
+fun generatePassword(length: Int): String {
+    val digits = "0123456789"
+    val specialChars = "!\"#$%&'()*+,-./ "
+    val password = StringBuilder()
 
-    if (isValidLength(login) && isValidLength(password)) {
-        println("Добро пожаловать!")
-    } else {
-        println("Логин или пароль недостаточно длинные")
+    for (i in 0 until length) {
+        if (i % 2 == 0) {
+            password.append(digits.random())
+        } else {
+            password.append(specialChars.random())
+        }
     }
+
+    return password.toString()
+}
+
+fun main() {
+    println("Введите длину пароля:")
+    val length = readln().toInt()
+    val password = generatePassword(length)
+    println("Сгенерированный пароль: $password")
 }
