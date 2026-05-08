@@ -1,24 +1,45 @@
 package org.example
 
-fun generatePassword(length: Int): String {
-    val digits = "0123456789"
-    val specialChars = ' '..'/'
-    val password = StringBuilder()
+fun rollDice(): Int {
+    return (1..6).random()
+}
 
-    for (i in 0 until length) {
-        if (i % 2 == 0) {
-            password.append(digits.random())
-        } else {
-            password.append(specialChars.random())
-        }
+fun playRound(): String {
+    println("Ход игрока...")
+    val playerRoll = rollDice()
+    println("Игрок выбросил: $playerRoll")
+
+    println("Ход компьютера...")
+    val computerRoll = rollDice()
+    println("Компьютер выбросил: $computerRoll")
+
+    return when {
+        playerRoll > computerRoll -> "player"
+        computerRoll > playerRoll -> "computer"
+        else -> "draw"
     }
-
-    return password.toString()
 }
 
 fun main() {
-    println("Введите длину пароля:")
-    val length = readln().toInt()
-    val password = generatePassword(length)
-    println("Сгенерированный пароль: $password")
+    var playerWins = 0
+    var playAgain = true
+
+    while (playAgain) {
+        val result = playRound()
+
+        when (result) {
+            "player" -> {
+                println("Победило человечество")
+                playerWins++
+            }
+            "computer" -> println("Победила машина")
+            else -> println("Победила дружба")
+        }
+
+        println("Хотите бросить кости еще раз? Введите Да или Нет")
+        val answer = readln()
+        playAgain = answer.equals("Да", ignoreCase = true)
+    }
+
+    println("Количество выигранных партий: $playerWins")
 }
