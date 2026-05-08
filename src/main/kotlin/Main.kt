@@ -11,15 +11,14 @@ fun authorize(login: String, password: String): String? {
     return null
 }
 
-fun getCart(token: String?): List<String>? {
-    if (token == null) return null
+fun getCart(token: String): List<String> {
     return listOf("Ноутбук", "Мышь", "Клавиатура")
 }
 
 fun main() {
     val token = authorize(VALID_LOGIN, VALID_PASSWORD)
-    val cart = getCart(token)
-    if (cart != null) {
+    if (token != null) {
+        val cart = getCart(token)
         println("Содержимое корзины: ${cart.joinToString(", ")}")
     } else {
         println("Неудачная авторизация")
