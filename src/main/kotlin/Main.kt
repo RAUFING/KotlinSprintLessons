@@ -17,7 +17,7 @@ fun main() {
     val user2 = User(
         id = 2,
         login = "kotlin_fan",
-        password = "securePass!",
+        password = "securePass!!",
         email = "kotlin@example.com",
     )
 
