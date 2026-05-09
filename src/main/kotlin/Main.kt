@@ -1,26 +1,49 @@
 package org.example
 
-class User(
+class User2(
     val id: Long,
     val login: String,
-    val password: String,
-    val email: String
-)
+    var password: String,
+    val email: String,
+    var bio: String? = null
+) {
+    fun printInfo() {
+        println("ID: $id")
+        println("Логин: $login")
+        println("Пароль: $password")
+        println("Почта: $email")
+        println("О себе: ${bio ?: "не указано"}")
+    }
+
+    fun changeBio() {
+        println("Введите информацию о себе:")
+        bio = readln()
+    }
+
+    fun changePassword() {
+        println("Введите текущий пароль:")
+        val currentPassword = readln()
+        if (currentPassword == password) {
+            println("Введите новый пароль:")
+            password = readln()
+            println("Пароль изменен")
+        } else {
+            println("Неверный пароль")
+        }
+    }
+}
 
 fun main() {
-    val user1 = User(
+    val me = User2(
         id = 1,
-        login = "android_dev",
-        password = "qwerty123",
-        email = "android@example.com"
-    )
-    val user2 = User(
-        id = 2,
-        login = "kotlin_fan",
-        password = "securePass!",
-        email = "kotlin@example.com"
+        login = "rauf",
+        password = "old_secret",
+        email = "rauf@example.com"
     )
 
-    println("ID: ${user1.id}, Логин: ${user1.login}, Пароль: ${user1.password}, Почта: ${user1.email}")
-    println("ID: ${user2.id}, Логин: ${user2.login}, Пароль: ${user2.password}, Почта: ${user2.email}")
+    me.changeBio()
+    me.changePassword()
+
+    println("\nОбновленная информация:")
+    me.printInfo()
 }
