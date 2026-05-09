@@ -1,33 +1,29 @@
 package org.example
 
-class User(
-    val nickname: String,
-    val avatarUrl: String
-)
-
 class Participant(
-    val user: User,
-    var status: String = "пользователь заглушен"
+    val nickname: String,
+    val avatarUrl: String,
+    var status: String,
 )
 
 class Room(
     val coverUrl: String,
     val title: String,
-    val participants: MutableList<Participant> = mutableListOf()
+    val participants: MutableList<Participant> = mutableListOf(),
 ) {
-    fun addParticipant(user: User) {
-        participants.add(Participant(user))
+    fun addParticipant(participant: Participant) {
+        participants.add(participant)
     }
 
     fun updateStatus(nickname: String, newStatus: String) {
-        participants.find { it.user.nickname == nickname }?.status = newStatus
+        participants.find { it.nickname == nickname }?.status = newStatus
     }
 
     fun printInfo() {
         println("Комната: $title")
         println("Участники:")
         for (participant in participants) {
-            println("- ${participant.user.nickname} [${participant.status}]")
+            println("- ${participant.nickname} [${participant.status}]")
         }
     }
 }
@@ -35,11 +31,12 @@ class Room(
 fun main() {
     val room = Room(
         coverUrl = "https://example.com/covers/kotlin.png",
-        title = "Kotlin Community"
+        title = "Kotlin Community",
     )
 
-    room.addParticipant(User(nickname = "rauf", avatarUrl = "https://example.com/avatars/rauf.png"))
-    room.addParticipant(User(nickname = "ivan_dev", avatarUrl = "https://example.com/avatars/ivan.png"))
+    room.addParticipant(Participant(nickname = "rauf", avatarUrl = "https://example.com/avatars/rauf.png", status = "разговаривает"))
+    room.addParticipant(Participant(nickname = "ivan_dev", avatarUrl = "https://example.com/avatars/ivan.png", status = "микрофон выключен"))
+    room.addParticipant(Participant(nickname = "kotlin_master", avatarUrl = "https://example.com/avatars/master.png", status = "пользователь заглушен"))
 
     room.updateStatus("rauf", "разговаривает")
     room.updateStatus("ivan_dev", "микрофон выключен")
