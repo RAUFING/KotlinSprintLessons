@@ -1,49 +1,48 @@
 package org.example
 
-class User2(
-    val id: Long,
-    val login: String,
-    var password: String,
-    val email: String,
-    var bio: String? = null
+class User(
+    val nickname: String,
+    val avatarUrl: String
+)
+
+class Participant(
+    val user: User,
+    var status: String = "пользователь заглушен"
+)
+
+class Room(
+    val coverUrl: String,
+    val title: String,
+    val participants: MutableList<Participant> = mutableListOf()
 ) {
+    fun addParticipant(user: User) {
+        participants.add(Participant(user))
+    }
+
+    fun updateStatus(nickname: String, newStatus: String) {
+        participants.find { it.user.nickname == nickname }?.status = newStatus
+    }
+
     fun printInfo() {
-        println("ID: $id")
-        println("Логин: $login")
-        println("Пароль: $password")
-        println("Почта: $email")
-        println("О себе: ${bio ?: "не указано"}")
-    }
-
-    fun changeBio() {
-        println("Введите информацию о себе:")
-        bio = readln()
-    }
-
-    fun changePassword() {
-        println("Введите текущий пароль:")
-        val currentPassword = readln()
-        if (currentPassword == password) {
-            println("Введите новый пароль:")
-            password = readln()
-            println("Пароль изменен")
-        } else {
-            println("Неверный пароль")
+        println("Комната: $title")
+        println("Участники:")
+        for (participant in participants) {
+            println("- ${participant.user.nickname} [${participant.status}]")
         }
     }
 }
 
 fun main() {
-    val me = User2(
-        id = 1,
-        login = "rauf",
-        password = "old_secret",
-        email = "rauf@example.com"
+    val room = Room(
+        coverUrl = "https://example.com/covers/kotlin.png",
+        title = "Kotlin Community"
     )
 
-    me.changeBio()
-    me.changePassword()
+    room.addParticipant(User(nickname = "rauf", avatarUrl = "https://example.com/avatars/rauf.png"))
+    room.addParticipant(User(nickname = "ivan_dev", avatarUrl = "https://example.com/avatars/ivan.png"))
 
-    println("\nОбновленная информация:")
-    me.printInfo()
+    room.updateStatus("rauf", "разговаривает")
+    room.updateStatus("ivan_dev", "микрофон выключен")
+
+    room.printInfo()
 }
