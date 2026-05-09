@@ -4,7 +4,8 @@ class User(
     val id: Long,
     val login: String,
     val password: String,
-    val email: String,)
+    val email: String,
+)
 
 fun main() {
     val user1 = User(
