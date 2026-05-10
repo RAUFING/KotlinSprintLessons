@@ -1,10 +1,23 @@
 package org.example
 
-fun main() {
-    val userName = "Иван"
-    // Объявляем переменные
-    var greeting = "Доброе утро"
-    println("$greeting, $userName!")
-    greeting = "Добрый вечер"
-    println("$greeting, $userName!")
-}
+class Category(
+    val id: Int,
+    val title: String,
+    val description: String,
+    val iconUrl: String,
+)
+
+class Ingredient(
+    val name: String,
+    val quantity: String,
+    val unit: String,
+)
+
+class Recipe(
+    val id: Int,
+    val title: String,
+    val categoryId: Int,
+    val ingredients: List<Ingredient>,
+    val steps: List<String>,
+    val imageUrl: String,
+)
