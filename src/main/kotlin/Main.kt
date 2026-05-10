@@ -10,6 +10,7 @@ class Category(
 class Ingredient(
     val name: String,
     val quantity: String,
+    val unit: String,
 )
 
 class Recipe(
@@ -17,6 +18,6 @@ class Recipe(
     val title: String,
     val categoryId: Int,
     val ingredients: List<Ingredient>,
-    val instructions: String,
+    val steps: List<String>,
     val imageUrl: String,
 )
