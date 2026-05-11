@@ -1,9 +1,10 @@
 package org.example
 
+const val KELVIN_TO_CELSIUS_OFFSET = 273
+
 class WeatherReport(daytimeKelvin: Int, nighttimeKelvin: Int) {
-    private val kelvinToCelsiusOffset = 273
-    val daytimeTemperature: Int = daytimeKelvin - kelvinToCelsiusOffset
-    val nighttimeTemperature: Int = nighttimeKelvin - kelvinToCelsiusOffset
+    val daytimeTemperature: Int = daytimeKelvin - KELVIN_TO_CELSIUS_OFFSET
+    val nighttimeTemperature: Int = nighttimeKelvin - KELVIN_TO_CELSIUS_OFFSET
     val isPrecipitation: Boolean = false
 
     init {
