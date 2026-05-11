@@ -1,10 +1,10 @@
 package org.example
 
-class WeatherData(
-    val daytimeTemperature: Int,
-    val nighttimeTemperature: Int,
-    val isPrecipitation: Boolean
-) {
+class WeatherReport(daytimeKelvin: Int, nighttimeKelvin: Int) {
+    val daytimeTemperature: Int = daytimeKelvin - 273
+    val nighttimeTemperature: Int = nighttimeKelvin - 273
+    var isPrecipitation: Boolean = false
+
     fun printInfo() {
         println("Дневная температура: $daytimeTemperature")
         println("Ночная температура: $nighttimeTemperature")
@@ -13,10 +13,7 @@ class WeatherData(
 }
 
 fun main() {
-    val day = WeatherData(
-        daytimeTemperature = 25,
-        nighttimeTemperature = 15,
-        isPrecipitation = false
-    )
-    day.printInfo()
+    val report = WeatherReport(daytimeKelvin = 298, nighttimeKelvin = 288)
+    report.isPrecipitation = true
+    report.printInfo()
 }
