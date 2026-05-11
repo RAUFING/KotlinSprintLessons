@@ -6,7 +6,7 @@ class WeatherReport(daytimeKelvin: Int, nighttimeKelvin: Int) {
     val nighttimeTemperature: Int = nighttimeKelvin - kelvinToCelsiusOffset
     val isPrecipitation: Boolean = false
 
-    fun printInfo() {
+    init {
         println("Дневная температура: $daytimeTemperature")
         println("Ночная температура: $nighttimeTemperature")
         println("Осадки: ${if (isPrecipitation) "да" else "нет"}")
@@ -15,5 +15,4 @@ class WeatherReport(daytimeKelvin: Int, nighttimeKelvin: Int) {
 
 fun main() {
     val report = WeatherReport(daytimeKelvin = 298, nighttimeKelvin = 288)
-    report.printInfo()
 }
