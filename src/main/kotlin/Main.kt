@@ -1,10 +1,19 @@
 package org.example
 
+const val KELVIN_TO_CELSIUS_OFFSET = 273
+
+class WeatherReport(daytimeKelvin: Int, nighttimeKelvin: Int) {
+    val daytimeTemperature: Int = daytimeKelvin - KELVIN_TO_CELSIUS_OFFSET
+    val nighttimeTemperature: Int = nighttimeKelvin - KELVIN_TO_CELSIUS_OFFSET
+    val isPrecipitation: Boolean = false
+
+    init {
+        println("Дневная температура: $daytimeTemperature")
+        println("Ночная температура: $nighttimeTemperature")
+        println("Осадки: ${if (isPrecipitation) "да" else "нет"}")
+    }
+}
+
 fun main() {
-    val userName = "Иван"
-    // Объявляем переменные
-    var greeting = "Доброе утро"
-    println("$greeting, $userName!")
-    greeting = "Добрый вечер"
-    println("$greeting, $userName!")
+    val report = WeatherReport(daytimeKelvin = 298, nighttimeKelvin = 288)
 }
