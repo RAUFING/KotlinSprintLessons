@@ -1,21 +1,25 @@
 package org.example
 
+import kotlin.random.Random
+
 const val KELVIN_TO_CELSIUS_OFFSET = 273
 
-class WeatherInfo(daytimeKelvin: Int, nighttimeKelvin: Int, precipitation: Boolean) {
+class WeatherInfo(
+    daytimeKelvin: Int,
+    nighttimeKelvin: Int,
+    val isPrecipitation: Boolean,
+) {
     val daytimeTemperature: Int = daytimeKelvin - KELVIN_TO_CELSIUS_OFFSET
     val nighttimeTemperature: Int = nighttimeKelvin - KELVIN_TO_CELSIUS_OFFSET
-    val isPrecipitation: Boolean = precipitation
 }
 
 fun main() {
-    val monthData = mutableListOf<WeatherInfo>()
-
-    for (i in 1..30) {
-        val daytimeK = (283..313).random()
-        val nighttimeK = (273..303).random()
-        val precipitation = listOf(true, false).random()
-        monthData.add(WeatherInfo(daytimeK, nighttimeK, precipitation))
+    val monthData = List(30) {
+        WeatherInfo(
+            daytimeKelvin = (283..313).random(),
+            nighttimeKelvin = (273..303).random(),
+            isPrecipitation = Random.nextBoolean(),
+        )
     }
 
     val daytimeTemps = monthData.map { it.daytimeTemperature }
