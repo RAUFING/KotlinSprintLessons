@@ -1,45 +1,27 @@
 package org.example
 
-class Participant(
-    val nickname: String,
-    val avatarUrl: String,
-    var status: String,
-)
-
-class Room(
-    val coverUrl: String,
-    val title: String,
-    val participants: MutableList<Participant> = mutableListOf(),
-) {
-    fun addParticipant(participant: Participant) {
-        participants.add(participant)
-    }
-
-    fun updateStatus(nickname: String, newStatus: String) {
-        participants.find { it.nickname == nickname }?.status = newStatus
-    }
+class WeatherForecast {
+    var daytimeTemperature: Int = 0
+    var nighttimeTemperature: Int = 0
+    var isPrecipitation: Boolean = false
 
     fun printInfo() {
-        println("Комната: $title")
-        println("Участники:")
-        for (participant in participants) {
-            println("- ${participant.nickname} [${participant.status}]")
-        }
+        println("Дневная температура: $daytimeTemperature")
+        println("Ночная температура: $nighttimeTemperature")
+        println("Осадки: ${if (isPrecipitation) "да" else "нет"}")
     }
 }
 
 fun main() {
-    val room = Room(
-        coverUrl = "https://example.com/covers/kotlin.png",
-        title = "Kotlin Community",
-    )
+    val day1 = WeatherForecast()
+    day1.daytimeTemperature = 25
+    day1.nighttimeTemperature = 15
+    day1.isPrecipitation = false
+    day1.printInfo()
 
-    room.addParticipant(Participant(nickname = "rauf", avatarUrl = "https://example.com/avatars/rauf.png", status = "разговаривает"))
-    room.addParticipant(Participant(nickname = "ivan_dev", avatarUrl = "https://example.com/avatars/ivan.png", status = "микрофон выключен"))
-    room.addParticipant(Participant(nickname = "kotlin_master", avatarUrl = "https://example.com/avatars/master.png", status = "пользователь заглушен"))
-
-    room.updateStatus("rauf", "разговаривает")
-    room.updateStatus("ivan_dev", "микрофон выключен")
-
-    room.printInfo()
+    val day2 = WeatherForecast()
+    day2.daytimeTemperature = 10
+    day2.nighttimeTemperature = 3
+    day2.isPrecipitation = true
+    day2.printInfo()
 }
