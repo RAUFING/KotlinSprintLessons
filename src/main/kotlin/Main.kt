@@ -1,9 +1,10 @@
 package org.example
 
+const val KELVIN_TO_CELSIUS_OFFSET = 273
+
 class WeatherInfo(daytimeKelvin: Int, nighttimeKelvin: Int, precipitation: Boolean) {
-    private val kelvinOffset = 273
-    val daytimeTemperature: Int = daytimeKelvin - kelvinOffset
-    val nighttimeTemperature: Int = nighttimeKelvin - kelvinOffset
+    val daytimeTemperature: Int = daytimeKelvin - KELVIN_TO_CELSIUS_OFFSET
+    val nighttimeTemperature: Int = nighttimeKelvin - KELVIN_TO_CELSIUS_OFFSET
     val isPrecipitation: Boolean = precipitation
 }
 
