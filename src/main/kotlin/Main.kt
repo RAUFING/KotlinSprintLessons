@@ -3,7 +3,7 @@ package org.example
 class WeatherData(
     val daytimeTemperature: Int,
     val nighttimeTemperature: Int,
-    val isPrecipitation: Boolean
+    val isPrecipitation: Boolean,
 ) {
     fun printInfo() {
         println("Дневная температура: $daytimeTemperature")
@@ -16,7 +16,7 @@ fun main() {
     val day = WeatherData(
         daytimeTemperature = 25,
         nighttimeTemperature = 15,
-        isPrecipitation = false
+        isPrecipitation = false,
     )
     day.printInfo()
 }
