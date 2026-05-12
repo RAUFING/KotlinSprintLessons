@@ -6,11 +6,7 @@ class PhoneBookContact(
     val company: String? = null,
 ) {
     fun printInfo() {
-        println(
-            "Имя: $name\n" +
-            "Номер: $phoneNumber\n" +
-            "Компания: ${company ?: "<не указано>"}"
-        )
+        println("Имя: $name\nНомер: $phoneNumber\nКомпания: ${company ?: "<не указано>"}")
     }
 }
 
