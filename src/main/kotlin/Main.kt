@@ -1,23 +1,38 @@
 package org.example
 
-class Contact(
+class PhoneRecord(
     val name: String,
     val phoneNumber: Long,
     val company: String? = null,
 ) {
-    fun getCompanyOrNull(): String? = company
+    fun printInfo() {
+        println("Имя: $name\nНомер: $phoneNumber\nКомпания: ${company ?: "<не указано>"}")
+    }
 }
 
 fun main() {
-    val contacts = listOf(
-        Contact("Анна", 89000000001, "Яндекс"),
-        Contact("Борис", 89000000002, null),
-        Contact("Виктор", 89000000003, "null"),
-        Contact("Галина", 89000000004, null),
-        Contact("Дмитрий", 89000000005, "Сбер"),
-    )
+    val phoneBook = mutableListOf<PhoneRecord>()
 
-    val companies = contacts.mapNotNull { it.company }
+    for (i in 1..5) {
+        println("Введите имя:")
+        val name = readln()
 
-    println("Существующие компании: ${companies.joinToString(", ")}")
+        println("Введите номер телефона:")
+        val phoneNumber = readln().toLongOrNull()
+
+        if (phoneNumber == null) {
+            println("Номер телефона не указан, запись не добавлена.")
+            continue
+        }
+
+        println("Введите компанию (можно пропустить):")
+        val company = readln().ifEmpty { null }
+
+        phoneBook.add(PhoneRecord(name, phoneNumber, company))
+    }
+
+    for (record in phoneBook) {
+        record.printInfo()
+        println("---")
+    }
 }
