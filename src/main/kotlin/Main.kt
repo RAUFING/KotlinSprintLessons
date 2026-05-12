@@ -4,9 +4,7 @@ class Contact(
     val name: String,
     val phoneNumber: Long,
     val company: String? = null,
-) {
-    fun getCompanyOrNull(): String? = company
-}
+)
 
 fun main() {
     val contacts = listOf(
