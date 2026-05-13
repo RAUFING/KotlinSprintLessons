@@ -6,13 +6,13 @@ open class Liner(
     open val speed: Int = 30,
     open val description: String = "Лайнер",
 ) {
-    open fun loading() {
+    open fun load() {
         println("Выдвигает горизонтальный трап со шкафута")
     }
 
     fun printInfo() {
         print("Тип: $description, Скорость: $speed, Пассажиры: $passengerCapacity, Груз: $cargoCapacity, Погрузка: ")
-        loading()
+        load()
     }
 }
 
@@ -22,7 +22,7 @@ class CargoShip : Liner(
     speed = 20,
     description = "Грузовой",
 ) {
-    override fun loading() {
+    override fun load() {
         println("Активирует погрузочный кран")
     }
 }
@@ -33,7 +33,7 @@ class Icebreaker : Liner(
     speed = 15,
     description = "Ледокол",
 ) {
-    override fun loading() {
+    override fun load() {
         println("Открывает ворота со стороны кормы")
     }
 
