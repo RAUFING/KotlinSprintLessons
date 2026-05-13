@@ -1,28 +1,38 @@
 package org.example
 
-class PhoneEntry(
-    val name: String,
-    val phoneNumber: Long,
-    val company: String? = null,
-) {
+open class Liner {
+    open val speed: Int = 30
+    open val capacity: Int = 3000
+    open val description: String = "Лайнер"
+
     fun printInfo() {
-        println("Имя: $name\nНомер: $phoneNumber\nКомпания: ${company ?: "<не указано>"}")
+        println("Тип: $description, Скорость: $speed, Вместимость: $capacity")
+    }
+}
+
+class CargoShip : Liner() {
+    override val speed: Int = 20
+    override val capacity: Int = 500
+    override val description: String = "Грузовой"
+}
+
+class Icebreaker : Liner() {
+    override val speed: Int = 15
+    override val capacity: Int = 200
+    override val description: String = "Ледокол"
+
+    fun breakIce() {
+        println("Ледокол колет лёд")
     }
 }
 
 fun main() {
-    println("Введите номер телефона:")
-    val phoneString = readln()
+    val liner = Liner()
+    val cargo = CargoShip()
+    val icebreaker = Icebreaker()
 
-    val phoneNumber: Long? = try {
-        phoneString.toLong()
-    } catch (e: NumberFormatException) {
-        println("Ошибка: ${e.javaClass.simpleName}")
-        null
-    }
-
-    if (phoneNumber != null) {
-        val entry = PhoneEntry("Ростислав", phoneNumber, "Reddit")
-        entry.printInfo()
-    }
+    liner.printInfo()
+    cargo.printInfo()
+    icebreaker.printInfo()
+    icebreaker.breakIce()
 }
