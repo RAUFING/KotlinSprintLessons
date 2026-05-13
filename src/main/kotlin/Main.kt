@@ -1,21 +1,28 @@
 package org.example
 
-class Contact(
+class PhoneEntry(
     val name: String,
     val phoneNumber: Long,
     val company: String? = null,
-)
+) {
+    fun printInfo() {
+        println("Имя: $name\nНомер: $phoneNumber\nКомпания: ${company ?: "<не указано>"}")
+    }
+}
 
 fun main() {
-    val contacts = listOf(
-        Contact("Анна", 89000000001, "Яндекс"),
-        Contact("Борис", 89000000002, null),
-        Contact("Виктор", 89000000003, "null"),
-        Contact("Галина", 89000000004, null),
-        Contact("Дмитрий", 89000000005, "Сбер"),
-    )
+    println("Введите номер телефона:")
+    val phoneString = readln()
 
-    val companies = contacts.mapNotNull { it.company }
+    val phoneNumber: Long? = try {
+        phoneString.toLong()
+    } catch (e: NumberFormatException) {
+        println("Ошибка: ${e.javaClass.simpleName}")
+        null
+    }
 
-    println("Существующие компании: ${companies.joinToString(", ")}")
+    if (phoneNumber != null) {
+        val entry = PhoneEntry("Ростислав", phoneNumber, "Reddit")
+        entry.printInfo()
+    }
 }
