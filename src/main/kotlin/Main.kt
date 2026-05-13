@@ -10,7 +10,7 @@ class Planet(
     name: String,
     hasAtmosphere: Boolean,
     isHabitable: Boolean,
-    val satellites: MutableList<Satellite> = mutableListOf(),
+    val satellites: List<Satellite>,
 ) : CelestialBody(name, hasAtmosphere, isHabitable)
 
 class Satellite(
@@ -24,22 +24,11 @@ fun main() {
         name = "Земля",
         hasAtmosphere = true,
         isHabitable = true,
+        satellites = listOf(
+            Satellite("Луна", false, false),
+            Satellite("МКС", false, true),
+        ),
     )
-
-    val moon = Satellite(
-        name = "Луна",
-        hasAtmosphere = false,
-        isHabitable = false,
-    )
-
-    val iss = Satellite(
-        name = "МКС",
-        hasAtmosphere = false,
-        isHabitable = true,
-    )
-
-    earth.satellites.add(moon)
-    earth.satellites.add(iss)
 
     println("Планета: ${earth.name}")
     println("Спутники:")
