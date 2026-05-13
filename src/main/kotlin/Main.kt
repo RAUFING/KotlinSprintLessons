@@ -1,31 +1,49 @@
 package org.example
 
-abstract class Figure(val color: String) {
-    abstract fun area(): Double
-    abstract fun perimeter(): Double
-}
+open class CelestialBody(
+    val name: String,
+    val hasAtmosphere: Boolean,
+    val isHabitable: Boolean,
+)
 
-class Circle(color: String, val radius: Double) : Figure(color) {
-    override fun area(): Double = Math.PI * radius * radius
-    override fun perimeter(): Double = 2 * Math.PI * radius
-}
+class Planet(
+    name: String,
+    hasAtmosphere: Boolean,
+    isHabitable: Boolean,
+    val satellites: MutableList<Satellite> = mutableListOf(),
+) : CelestialBody(name, hasAtmosphere, isHabitable)
 
-class Rectangle(color: String, val width: Double, val height: Double) : Figure(color) {
-    override fun area(): Double = width * height
-    override fun perimeter(): Double = 2 * (width + height)
-}
+class Satellite(
+    name: String,
+    hasAtmosphere: Boolean,
+    isHabitable: Boolean,
+) : CelestialBody(name, hasAtmosphere, isHabitable)
 
 fun main() {
-    val figures = listOf(
-        Circle("черный", 5.0),
-        Circle("белый", 3.0),
-        Rectangle("черный", 4.0, 6.0),
-        Rectangle("белый", 2.0, 8.0),
+    val earth = Planet(
+        name = "Земля",
+        hasAtmosphere = true,
+        isHabitable = true,
     )
 
-    val blackPerimeterSum = figures.filter { it.color == "черный" }.sumOf { it.perimeter() }
-    val whiteAreaSum = figures.filter { it.color == "белый" }.sumOf { it.area() }
+    val moon = Satellite(
+        name = "Луна",
+        hasAtmosphere = false,
+        isHabitable = false,
+    )
 
-    println("Сумма периметров черных фигур: ${"%.2f".format(blackPerimeterSum)}")
-    println("Сумма площадей белых фигур: ${"%.2f".format(whiteAreaSum)}")
+    val iss = Satellite(
+        name = "МКС",
+        hasAtmosphere = false,
+        isHabitable = true,
+    )
+
+    earth.satellites.add(moon)
+    earth.satellites.add(iss)
+
+    println("Планета: ${earth.name}")
+    println("Спутники:")
+    for (satellite in earth.satellites) {
+        println("- ${satellite.name}")
+    }
 }
