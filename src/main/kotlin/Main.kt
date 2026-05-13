@@ -1,54 +1,31 @@
 package org.example
 
-open class Liner(
-    open val passengerCapacity: Int = 3000,
-    open val cargoCapacity: Int = 100,
-    open val speed: Int = 30,
-    open val description: String = "Лайнер",
-) {
-    open fun load() {
-        println("Выдвигает горизонтальный трап со шкафута")
-    }
-
-    fun printInfo() {
-        print("Тип: $description, Скорость: $speed, Пассажиры: $passengerCapacity, Груз: $cargoCapacity, Погрузка: ")
-        load()
-    }
+abstract class Figure(val color: String) {
+    abstract fun area(): Double
+    abstract fun perimeter(): Double
 }
 
-class CargoShip : Liner(
-    passengerCapacity = 100,
-    cargoCapacity = 5000,
-    speed = 20,
-    description = "Грузовой",
-) {
-    override fun load() {
-        println("Активирует погрузочный кран")
-    }
+class Circle(color: String, val radius: Double) : Figure(color) {
+    override fun area(): Double = Math.PI * radius * radius
+    override fun perimeter(): Double = 2 * Math.PI * radius
 }
 
-class Icebreaker : Liner(
-    passengerCapacity = 50,
-    cargoCapacity = 500,
-    speed = 15,
-    description = "Ледокол",
-) {
-    override fun load() {
-        println("Открывает ворота со стороны кормы")
-    }
-
-    fun breakIce() {
-        println("Ледокол колет лёд")
-    }
+class Rectangle(color: String, val width: Double, val height: Double) : Figure(color) {
+    override fun area(): Double = width * height
+    override fun perimeter(): Double = 2 * (width + height)
 }
 
 fun main() {
-    val liner = Liner()
-    val cargo = CargoShip()
-    val icebreaker = Icebreaker()
+    val figures = listOf(
+        Circle("черный", 5.0),
+        Circle("белый", 3.0),
+        Rectangle("черный", 4.0, 6.0),
+        Rectangle("белый", 2.0, 8.0),
+    )
 
-    liner.printInfo()
-    cargo.printInfo()
-    icebreaker.printInfo()
-    icebreaker.breakIce()
+    val blackPerimeterSum = figures.filter { it.color == "черный" }.sumOf { it.perimeter() }
+    val whiteAreaSum = figures.filter { it.color == "белый" }.sumOf { it.area() }
+
+    println("Сумма периметров черных фигур: ${"%.2f".format(blackPerimeterSum)}")
+    println("Сумма площадей белых фигур: ${"%.2f".format(whiteAreaSum)}")
 }
