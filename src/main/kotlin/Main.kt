@@ -1,26 +1,34 @@
 package org.example
 
-open class Liner {
-    open val speed: Int = 30
-    open val capacity: Int = 3000
-    open val description: String = "Лайнер"
-
+open class Liner(
+    open val passengerCapacity: Int = 3000,
+    open val cargoCapacity: Int = 100,
+    open val speed: Int = 30,
+    open val description: String = "Лайнер",
+) {
     fun printInfo() {
-        println("Тип: $description, Скорость: $speed, Вместимость: $capacity")
+        println(
+            "Тип: $description, " +
+                    "Скорость: $speed, " +
+                    "Пассажиры: $passengerCapacity, " +
+                    "Груз: $cargoCapacity"
+        )
     }
 }
 
-class CargoShip : Liner() {
-    override val speed: Int = 20
-    override val capacity: Int = 500
-    override val description: String = "Грузовой"
-}
+class CargoShip : Liner(
+    passengerCapacity = 100,
+    cargoCapacity = 5000,
+    speed = 20,
+    description = "Грузовой",
+)
 
-class Icebreaker : Liner() {
-    override val speed: Int = 15
-    override val capacity: Int = 200
-    override val description: String = "Ледокол"
-
+class Icebreaker : Liner(
+    passengerCapacity = 50,
+    cargoCapacity = 500,
+    speed = 15,
+    description = "Ледокол",
+) {
     fun breakIce() {
         println("Ледокол колет лёд")
     }
