@@ -10,6 +10,7 @@ class WeatherServer {
         when (stats) {
             is Temperature -> println("Температура: ${stats.value}°C")
             is PrecipitationAmount -> println("Осадки: ${stats.value} мм")
+            else -> println("Неизвестный тип. Отправка отклонена")
         }
     }
 }
