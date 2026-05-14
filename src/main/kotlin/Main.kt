@@ -1,24 +1,49 @@
 package org.example
 
-abstract class WeatherStationStats
+abstract class User(
+    val name: String,
+) {
+    abstract fun read()
+    abstract fun write()
+}
 
-class Temperature(val value: Double) : WeatherStationStats()
-class PrecipitationAmount(val value: Double) : WeatherStationStats()
+class RegularUser(name: String) : User(name) {
+    override fun read() {
+        println("$name читает форум")
+    }
 
-class WeatherServer {
-    fun sendReport(stats: WeatherStationStats) {
-        when (stats) {
-            is Temperature -> println("Температура: ${stats.value}°C")
-            is PrecipitationAmount -> println("Осадки: ${stats.value} мм")
-        }
+    override fun write() {
+        println("$name пишет сообщение")
+    }
+}
+
+class Admin(name: String) : User(name) {
+    override fun read() {
+        println("$name читает форум")
+    }
+
+    override fun write() {
+        println("$name пишет сообщение")
+    }
+
+    fun deleteMessage() {
+        println("$name удаляет сообщение")
+    }
+
+    fun deleteUser() {
+        println("$name удаляет пользователя")
     }
 }
 
 fun main() {
-    val temperature = Temperature(23.5)
-    val precipitation = PrecipitationAmount(5.2)
+    val user = RegularUser("Анна")
+    val admin = Admin("Борис")
 
-    val server = WeatherServer()
-    server.sendReport(temperature)
-    server.sendReport(precipitation)
+    user.read()
+    user.write()
+
+    admin.read()
+    admin.write()
+    admin.deleteMessage()
+    admin.deleteUser()
 }
