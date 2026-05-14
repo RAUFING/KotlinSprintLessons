@@ -1,43 +1,60 @@
 package org.example
 
-interface Swimmable {
-    fun swim()
-}
+open class Message(
+    val id: Int,
+    val author: String,
+    val text: String,
+)
 
-interface Flyable {
-    fun fly()
-}
+class ChildMessage(
+    id: Int,
+    author: String,
+    text: String,
+    val parentMessageId: Int,
+) : Message(id, author, text)
 
-class CrucianCarp : Swimmable {
-    override fun swim() {
-        println("Карась плавает в воде")
-    }
-}
+class Chat {
+    private val messages = mutableListOf<Message>()
+    private var nextId = 1
 
-class Gull : Flyable {
-    override fun fly() {
-        println("Чайка летит над волнами")
-    }
-}
-
-class Duck : Swimmable, Flyable {
-    override fun swim() {
-        println("Утка плавает в пруду")
+    fun addMessage(author: String, text: String) {
+        messages.add(Message(id = nextId++, author = author, text = text))
     }
 
-    override fun fly() {
-        println("Утка летит на зимовку")
+    fun addThreadMessage(author: String, text: String, parentMessageId: Int) {
+        messages.add(
+            ChildMessage(
+                id = nextId++,
+                author = author,
+                text = text,
+                parentMessageId = parentMessageId,
+            )
+        )
+    }
+
+    fun printChat() {
+        val grouped = messages.groupBy { msg ->
+            if (msg is ChildMessage) msg.parentMessageId else msg.id
+        }
+
+        for (msg in messages) {
+            if (msg !is ChildMessage) {
+                println("${msg.author}: ${msg.text}")
+                grouped[msg.id]?.filterIsInstance<ChildMessage>()?.forEach { child ->
+                    println("\t${child.author}: ${child.text}")
+                }
+            }
+        }
     }
 }
 
 fun main() {
-    val carp = CrucianCarp()
-    carp.swim()
+    val chat = Chat()
+    chat.addMessage("Alice", "Привет всем!")
+    chat.addThreadMessage("Bob", "Привет, Alice!", parentMessageId = 1)
+    chat.addThreadMessage("Charlie", "Здарова!", parentMessageId = 1)
+    chat.addMessage("Bob", "Как дела?")
+    chat.addThreadMessage("Alice", "Отлично!", parentMessageId = 4)
 
-    val gull = Gull()
-    gull.fly()
-
-    val duck = Duck()
-    duck.swim()
-    duck.fly()
+    chat.printChat()
 }
