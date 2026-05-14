@@ -1,49 +1,31 @@
 package org.example
 
-abstract class User(
+abstract class Product(
     val name: String,
-) {
-    abstract fun read()
-    abstract fun write()
+    var stockQuantity: Int,
+)
+
+interface Searchable {
+    fun search()
 }
 
-class RegularUser(name: String) : User(name) {
-    override fun read() {
-        println("$name читает форум")
-    }
-
-    override fun write() {
-        println("$name пишет сообщение")
-    }
-}
-
-class Admin(name: String) : User(name) {
-    override fun read() {
-        println("$name читает форум")
-    }
-
-    override fun write() {
-        println("$name пишет сообщение")
-    }
-
-    fun deleteMessage() {
-        println("$name удаляет сообщение")
-    }
-
-    fun deleteUser() {
-        println("$name удаляет пользователя")
+class Instrument(
+    name: String,
+    stockQuantity: Int,
+) : Product(name, stockQuantity), Searchable {
+    override fun search() {
+        println("Выполняется поиск комплектующих для инструмента \"$name\"")
     }
 }
+
+class Accessory(
+    name: String,
+    stockQuantity: Int,
+) : Product(name, stockQuantity)
 
 fun main() {
-    val user = RegularUser("Анна")
-    val admin = Admin("Борис")
+    val guitar = Instrument("Гитара", 5)
+    val strings = Accessory("Струны", 20)
 
-    user.read()
-    user.write()
-
-    admin.read()
-    admin.write()
-    admin.deleteMessage()
-    admin.deleteUser()
+    guitar.search()
 }
