@@ -1,38 +1,60 @@
 package org.example
 
-open class CelestialBody(
-    val name: String,
-    val hasAtmosphere: Boolean,
-    val isHabitable: Boolean,
+open class Message(
+    val id: Int,
+    val author: String,
+    val text: String,
 )
 
-class Planet(
-    name: String,
-    hasAtmosphere: Boolean,
-    isHabitable: Boolean,
-    val satellites: List<Satellite>,
-) : CelestialBody(name, hasAtmosphere, isHabitable)
+class ChildMessage(
+    id: Int,
+    author: String,
+    text: String,
+    val parentMessageId: Int,
+) : Message(id, author, text)
 
-class Satellite(
-    name: String,
-    hasAtmosphere: Boolean,
-    isHabitable: Boolean,
-) : CelestialBody(name, hasAtmosphere, isHabitable)
+class Chat {
+    private val messages = mutableListOf<Message>()
+    private var nextId = 1
+
+    fun addMessage(author: String, text: String) {
+        messages.add(Message(id = nextId++, author = author, text = text))
+    }
+
+    fun addThreadMessage(author: String, text: String, parentMessageId: Int) {
+        messages.add(
+            ChildMessage(
+                id = nextId++,
+                author = author,
+                text = text,
+                parentMessageId = parentMessageId,
+            )
+        )
+    }
+
+    fun printChat() {
+        val grouped = messages.groupBy { msg ->
+            if (msg is ChildMessage) msg.parentMessageId else msg.id
+        }
+
+        for (msg in messages) {
+            if (msg !is ChildMessage) {
+                println("${msg.author}: ${msg.text}")
+                grouped[msg.id]?.filterIsInstance<ChildMessage>()?.forEach { child ->
+                    println("\t${child.author}: ${child.text}")
+                }
+            }
+        }
+    }
+}
 
 fun main() {
-    val earth = Planet(
-        name = "Земля",
-        hasAtmosphere = true,
-        isHabitable = true,
-        satellites = listOf(
-            Satellite("Луна", false, false),
-            Satellite("МКС", false, true),
-        ),
-    )
+    val chat = Chat()
+    chat.addMessage("Alice", "Привет всем!")
+    chat.addThreadMessage("Bob", "Привет, Alice!", parentMessageId = 1)
+    chat.addThreadMessage("Charlie", "Здарова!", parentMessageId = 1)
+    chat.addMessage("Bob", "Как дела?")
+    chat.addThreadMessage("Alice", "Отлично!", parentMessageId = 4)
 
-    println("Планета: ${earth.name}")
-    println("Спутники:")
-    for (satellite in earth.satellites) {
-        println("- ${satellite.name}")
-    }
+    chat.printChat()
 }
