@@ -3,29 +3,18 @@ package org.example
 abstract class User(
     val name: String,
 ) {
-    abstract fun read()
-    abstract fun write()
-}
-
-class RegularUser(name: String) : User(name) {
-    override fun read() {
+    fun read() {
         println("$name читает форум")
     }
 
-    override fun write() {
+    fun write() {
         println("$name пишет сообщение")
     }
 }
+
+class RegularUser(name: String) : User(name)
 
 class Admin(name: String) : User(name) {
-    override fun read() {
-        println("$name читает форум")
-    }
-
-    override fun write() {
-        println("$name пишет сообщение")
-    }
-
     fun deleteMessage() {
         println("$name удаляет сообщение")
     }
