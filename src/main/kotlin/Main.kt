@@ -1,43 +1,24 @@
 package org.example
 
-interface Swimmable {
-    fun swimming()
-}
+abstract class WeatherStationStats
 
-interface Flyable {
-    fun flying()
-}
+class Temperature(val value: Double) : WeatherStationStats()
+class PrecipitationAmount(val value: Double) : WeatherStationStats()
 
-class CrucianCarp : Swimmable {
-    override fun swimming() {
-        println("Карась плавает в воде")
-    }
-}
-
-class Gull : Flyable {
-    override fun flying() {
-        println("Чайка летит над волнами")
-    }
-}
-
-class Duck : Swimmable, Flyable {
-    override fun swimming() {
-        println("Утка плавает в пруду")
-    }
-
-    override fun flying() {
-        println("Утка летит на зимовку")
+class WeatherServer {
+    fun sendReport(stats: WeatherStationStats) {
+        when (stats) {
+            is Temperature -> println("Температура: ${stats.value}°C")
+            is PrecipitationAmount -> println("Осадки: ${stats.value} мм")
+        }
     }
 }
 
 fun main() {
-    val carp = CrucianCarp()
-    carp.swimming()
+    val temperature = Temperature(23.5)
+    val precipitation = PrecipitationAmount(5.2)
 
-    val gull = Gull()
-    gull.flying()
-
-    val duck = Duck()
-    duck.swimming()
-    duck.flying()
+    val server = WeatherServer()
+    server.sendReport(temperature)
+    server.sendReport(precipitation)
 }
