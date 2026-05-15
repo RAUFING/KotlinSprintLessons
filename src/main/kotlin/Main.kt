@@ -8,21 +8,21 @@ interface PassengerTransportable {
     val maxPassengers: Int
     var currentPassengers: Int
 
-    fun loadPassenger() {
-        if (currentPassengers < maxPassengers) {
-            currentPassengers++
-            println("Пассажир загружен. Текущее количество: $currentPassengers/$maxPassengers")
+    fun loadPassengers(count: Int) {
+        if (currentPassengers + count <= maxPassengers) {
+            currentPassengers += count
+            println("Загружено $count пассажиров. Текущее количество: $currentPassengers/$maxPassengers")
         } else {
-            println("Нет мест для пассажиров")
+            println("Нет мест для $count пассажиров")
         }
     }
 
-    fun unloadPassenger() {
-        if (currentPassengers > 0) {
-            currentPassengers--
-            println("Пассажир выгружен. Текущее количество: $currentPassengers/$maxPassengers")
+    fun unloadPassengers(count: Int) {
+        if (currentPassengers >= count) {
+            currentPassengers -= count
+            println("Выгружено $count пассажиров. Текущее количество: $currentPassengers/$maxPassengers")
         } else {
-            println("Нет пассажиров для выгрузки")
+            println("Недостаточно пассажиров для выгрузки")
         }
     }
 }
@@ -76,16 +76,10 @@ fun main() {
     val car2 = Car()
 
     truck.loadCargo(2.0)
+    truck.loadPassengers(1)
 
-    truck.loadPassenger()
-
-    car1.loadPassenger()
-    car1.loadPassenger()
-    car1.loadPassenger()
-
-    car2.loadPassenger()
-    car2.loadPassenger()
-    car2.loadPassenger()
+    car1.loadPassengers(3)
+    car2.loadPassengers(2)
 
     println("\nИтог:")
     println("Грузовик: пассажиры ${truck.currentPassengers}/${truck.maxPassengers}, груз ${truck.currentCargo}/${truck.maxCargo} тонн")
