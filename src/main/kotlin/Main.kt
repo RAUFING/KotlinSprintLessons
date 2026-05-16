@@ -1,6 +1,6 @@
 package org.example
 
-class Order(val orderNumber: String, private var status: String = "Принят") {
+class Order(private val orderNumber: String, private var status: String = "Принят") {
     fun requestStatusChange(newStatus: String) {
         println("Заявка на изменение статуса заказа $orderNumber отправлена менеджеру")
         changeStatus(newStatus)
