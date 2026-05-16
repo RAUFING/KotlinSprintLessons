@@ -1,10 +1,11 @@
 package org.example
 
+class Dice {
+    private val number = (1..6).random()
+    fun printNumber() = println("На кубике выпало $number")
+}
+
 fun main() {
-    val userName = "Иван"
-    // Объявляем переменные
-    var greeting = "Доброе утро"
-    println("$greeting, $userName!")
-    greeting = "Добрый вечер"
-    println("$greeting, $userName!")
+    val dice = Dice()
+    dice.printNumber()
 }
