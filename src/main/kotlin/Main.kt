@@ -1,10 +1,11 @@
 package org.example
 
+class User(private val login: String, private val password: String) {
+    fun validatePassword(input: String): Boolean = input == password
+}
+
 fun main() {
-    val userName = "Иван"
-    // Объявляем переменные
-    var greeting = "Доброе утро"
-    println("$greeting, $userName!")
-    greeting = "Добрый вечер"
-    println("$greeting, $userName!")
+    val user = User("rauf", "qwerty123")
+    println(user.validatePassword("wrong"))
+    println(user.validatePassword("qwerty123"))
 }
