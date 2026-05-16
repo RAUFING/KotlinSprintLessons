@@ -1,13 +1,49 @@
 package org.example
 
-class Order(val orderNumber: String, private var status: String = "Принят") {
-    fun requestStatusChange(newStatus: String) {
-        println("Заявка на изменение статуса заказа $orderNumber отправлена менеджеру")
-        changeStatus(newStatus)
+class Player(
+    val name: String,
+    private var health: Int,
+    private var attackPower: Int
+) {
+    fun takeDamage(damage: Int) {
+        if (health <= 0) return
+        health -= damage
+        if (health <= 0) {
+            die()
+        }
     }
 
-    private fun changeStatus(newStatus: String) {
-        status = newStatus
-        println("Статус заказа $orderNumber изменён на: $status")
+    fun heal(amount: Int) {
+        if (health <= 0) return
+        health += amount
     }
+
+    private fun die() {
+        health = 0
+        attackPower = 0
+    }
+
+    fun printStatus() {
+        println("Игрок $name: здоровье = $health, сила удара = $attackPower")
+    }
+}
+
+fun main() {
+    val player = Player("Герой", 100, 25)
+    player.printStatus()
+
+    player.takeDamage(30)
+    player.printStatus()
+
+    player.heal(10)
+    player.printStatus()
+
+    player.takeDamage(50)
+    player.printStatus()
+
+    player.takeDamage(40)  // добиваем
+    player.printStatus()
+
+    player.heal(100)  // уже не поможет
+    player.printStatus()
 }
