@@ -6,7 +6,6 @@ class QuizElement(
 ) {
     var question: String = question
         get() = field
-        private set
 
     var answer: String = answer
         get() = field
