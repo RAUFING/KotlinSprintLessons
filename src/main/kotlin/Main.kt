@@ -1,13 +1,15 @@
 package org.example
 
-class Order(private val orderNumber: String, private var status: String = "Принят") {
-    fun requestStatusChange(newStatus: String) {
-        println("Заявка на изменение статуса заказа $orderNumber отправлена менеджеру")
-        changeStatus(newStatus)
-    }
+class QuizElement(
+    initialQuestion: String,
+    initialAnswer: String,
+) {
+    val question: String = initialQuestion
+        get() = field
 
-    private fun changeStatus(newStatus: String) {
-        status = newStatus
-        println("Статус заказа $orderNumber изменён на: $status")
-    }
+    var answer: String = initialAnswer
+        get() = field
+        set(value) {
+            field = value
+        }
 }
