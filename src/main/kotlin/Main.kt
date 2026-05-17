@@ -6,7 +6,6 @@ class Ship(
     val homePort: String,
 ) {
     var name: String = name
-        get() = field
         set(value) {
             println("Имя корабля менять нельзя")
         }
