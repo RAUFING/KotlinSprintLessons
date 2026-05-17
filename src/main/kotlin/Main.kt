@@ -6,9 +6,7 @@ class Ship(
     val homePort: String,
 ) {
     var name: String = name
-        set(value) {
-            println("Имя корабля менять нельзя")
-        }
+        set(value) = println("Имя корабля менять нельзя")
 }
 
 fun main() {
