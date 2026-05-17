@@ -1,13 +1,10 @@
 package org.example
 
-class QuizElement(
-    initialQuestion: String,
-    initialAnswer: String,
-) {
-    val question: String = initialQuestion
+class QuizElement(Question: String, Answer: String) {
+    val question: String = Question
         get() = field
 
-    var answer: String = initialAnswer
+    var answer: String = Answer
         get() = field
         set(value) {
             field = value
