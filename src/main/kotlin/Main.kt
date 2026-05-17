@@ -1,27 +1,21 @@
 package org.example
 
-class Ship(
-    name: String,
-    val averageSpeed: Double,
-    val homePort: String,
+class Folder(
+    private val actualName: String,
+    private val actualFileCount: Int,
+    private val isSecret: Boolean,
 ) {
-    var name: String = name
-        get() = field
-        set(value) {
-            println("Имя корабля менять нельзя")
-        }
+    val name: String
+        get() = if (isSecret) "скрытая папка" else actualName
+
+    val fileCount: Int
+        get() = if (isSecret) 0 else actualFileCount
 }
 
 fun main() {
-    val ship = Ship("Летучий голландец", 25.0, "Роттердам")
+    val secretFolder = Folder("Секретные документы", 42, true)
+    val normalFolder = Folder("Публичные файлы", 10, false)
 
-    println("Имя: ${ship.name}")
-    println("Скорость: ${ship.averageSpeed}")
-    println("Порт приписки: ${ship.homePort}")
-
-    println("\nПопытка сменить имя...")
-    ship.name = "Титаник"
-
-    println("\nПосле попытки:")
-    println("Имя: ${ship.name}")
+    println("Папка 1: Имя = ${secretFolder.name}, Файлов = ${secretFolder.fileCount}")
+    println("Папка 2: Имя = ${normalFolder.name}, Файлов = ${normalFolder.fileCount}")
 }
