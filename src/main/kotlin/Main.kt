@@ -23,7 +23,7 @@ class Cube(
 }
 
 fun main() {
-    val rectangular = RectangularBox(2.0, 3.0, 4.0)
+    val rectangular: Box = RectangularBox(2.0, 3.0, 4.0)
     val cube = Cube(5.0)
 
     println("Площадь прямоугольной коробки: ${rectangular.surfaceArea()}")
