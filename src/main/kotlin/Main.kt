@@ -1,23 +1,37 @@
 package org.example
 
-abstract class Dice(val sides: Int) {
-    fun roll() {
-        println("Бросок d$sides: ${(1..sides).random()}")
+abstract class Animal(val name: String) {
+    open fun eat() {
+        println("$name -> ест")
     }
 }
 
-class Dice4 : Dice(4)
-class Dice6 : Dice(6)
-class Dice8 : Dice(8)
+class Fox(name: String) : Animal(name) {
+    override fun eat() {
+        println("$name -> ест ягоды")
+    }
+}
+
+class Dog(name: String) : Animal(name) {
+    override fun eat() {
+        println("$name -> ест кости")
+    }
+}
+
+class Cat(name: String) : Animal(name) {
+    override fun eat() {
+        println("$name -> ест рыбу")
+    }
+}
 
 fun main() {
-    val d4 = Dice4()
-    val d6 = Dice6()
-    val d8 = Dice8()
+    val animals: List<Animal> = listOf(
+        Fox("Алиса"),
+        Dog("Бобик"),
+        Cat("Мурка"),
+    )
 
-    val diceList: List<Dice> = listOf(d4, d6, d8)
-
-    for (dice in diceList) {
-        dice.roll()
+    for (animal in animals) {
+        animal.eat()
     }
 }
