@@ -1,24 +1,35 @@
 package org.example
 
-class Ship(
-    name: String,
-    val averageSpeed: Double,
-    val homePort: String,
+class Parcel(
+    val trackingNumber: String,
+    initialLocation: String,
 ) {
-    var name: String = name
-        set(value) = println("Имя корабля менять нельзя")
+    var location: String = initialLocation
+        set(value) {
+            field = value
+            moveCount++
+        }
+
+    var moveCount: Int = 0
+        private set
 }
 
 fun main() {
-    val ship = Ship("Летучий голландец", 25.0, "Роттердам")
+    val parcel = Parcel("TK12345", "Склад отправителя")
 
-    println("Имя: ${ship.name}")
-    println("Скорость: ${ship.averageSpeed}")
-    println("Порт приписки: ${ship.homePort}")
+    println("Номер посылки: ${parcel.trackingNumber}")
+    println("Местоположение: ${parcel.location}")
+    println("Перемещений: ${parcel.moveCount}")
 
-    println("\nПопытка сменить имя...")
-    ship.name = "Титаник"
+    println("\nПосылка прибыла в промежуточный пункт...")
+    parcel.location = "Сортировочный центр Казань"
 
-    println("\nПосле попытки:")
-    println("Имя: ${ship.name}")
+    println("Местоположение: ${parcel.location}")
+    println("Перемещений: ${parcel.moveCount}")
+
+    println("\nПосылка прибыла в пункт выдачи...")
+    parcel.location = "Пункт выдачи №5"
+
+    println("Местоположение: ${parcel.location}")
+    println("Перемещений: ${parcel.moveCount}")
 }
