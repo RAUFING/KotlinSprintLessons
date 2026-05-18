@@ -1,20 +1,19 @@
 package org.example
 
-open class Dice(val sides: Int) {
+abstract class Dice(val sides: Int) {
     fun roll() {
-        val result = (1..sides).random()
-        println("Бросок d$sides: $result")
+        println("Бросок d$sides: ${(1..sides).random()}")
     }
 }
 
-class D4 : Dice(4)
-class D6 : Dice(6)
-class D8 : Dice(8)
+class Dice4 : Dice(4)
+class Dice6 : Dice(6)
+class Dice8 : Dice(8)
 
 fun main() {
-    val d4 = D4()
-    val d6 = D6()
-    val d8 = D8()
+    val d4 = Dice4()
+    val d6 = Dice6()
+    val d8 = Dice8()
 
     val diceList: List<Dice> = listOf(d4, d6, d8)
 
