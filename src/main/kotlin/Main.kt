@@ -1,21 +1,24 @@
 package org.example
 
-class Order(
-    val orderNumber: Int,
-) {
-    fun printItems(item: String) {
-        println("Заказан товар: $item")
-    }
-
-    fun printItems(items: List<String>) {
-        println("Заказаны следующие товары: ${items.joinToString(", ")}")
+open class Dice(val sides: Int) {
+    fun roll() {
+        val result = (1..sides).random()
+        println("Бросок d$sides: $result")
     }
 }
 
-fun main() {
-    val order1 = Order(1)
-    val order2 = Order(2)
+class D4 : Dice(4)
+class D6 : Dice(6)
+class D8 : Dice(8)
 
-    order1.printItems("Ноутбук")
-    order2.printItems(listOf("Мышь", "Клавиатура", "Монитор"))
+fun main() {
+    val d4 = D4()
+    val d6 = D6()
+    val d8 = D8()
+
+    val diceList: List<Dice> = listOf(d4, d6, d8)
+
+    for (dice in diceList) {
+        dice.roll()
+    }
 }
