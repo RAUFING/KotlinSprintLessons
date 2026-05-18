@@ -1,35 +1,21 @@
 package org.example
 
-class User(
-    initialLogin: String,
-    initialPassword: String,
+class Order(
+    val orderNumber: Int,
 ) {
-    var login: String = initialLogin
-        set(value) {
-            field = value
-            println("Логин успешно изменён")
-        }
+    fun printItems(item: String) {
+        println("Заказан товар: $item")
+    }
 
-    var password: String = initialPassword
-        get() = "*".repeat(field.length)
-        set(value) {
-            println("Вы не можете изменить пароль")
-        }
+    fun printItems(items: List<String>) {
+        println("Заказаны следующие товары: ${items.joinToString(", ")}")
+    }
 }
 
 fun main() {
-    val user = User("android_dev", "qwerty123")
+    val order1 = Order(1)
+    val order2 = Order(2)
 
-    println("Логин: ${user.login}")
-    println("Пароль: ${user.password}")
-
-    println("\nПопытка сменить пароль...")
-    user.password = "new_password"
-
-    println("\nПопытка сменить логин...")
-    user.login = "new_login"
-
-    println("\nПосле попыток:")
-    println("Логин: ${user.login}")
-    println("Пароль: ${user.password}")
+    order1.printItems("Ноутбук")
+    order2.printItems(listOf("Мышь", "Клавиатура", "Монитор"))
 }
