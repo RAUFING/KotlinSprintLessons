@@ -1,10 +1,31 @@
 package org.example
 
+abstract class Box {
+    abstract fun surfaceArea(): Double
+}
+
+class RectangularBox(
+    val length: Double,
+    val width: Double,
+    val height: Double,
+) : Box() {
+    override fun surfaceArea(): Double {
+        return 2 * (length * width + width * height + height * length)
+    }
+}
+
+class Cube(
+    val edge: Double,
+) : Box() {
+    override fun surfaceArea(): Double {
+        return 6 * edge * edge
+    }
+}
+
 fun main() {
-    val userName = "Иван"
-    // Объявляем переменные
-    var greeting = "Доброе утро"
-    println("$greeting, $userName!")
-    greeting = "Добрый вечер"
-    println("$greeting, $userName!")
+    val rectangular: Box = RectangularBox(2.0, 3.0, 4.0)
+    val cube = Cube(5.0)
+
+    println("Площадь прямоугольной коробки: ${rectangular.surfaceArea()}")
+    println("Площадь кубической коробки: ${cube.surfaceArea()}")
 }
