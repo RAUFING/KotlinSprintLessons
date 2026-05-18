@@ -1,38 +1,31 @@
 package org.example
 
-abstract class Animal(val name: String) {
-    abstract fun eat()
-    fun sleep() {
-        println("Zzz....")
+abstract class Box {
+    abstract fun surfaceArea(): Double
+}
+
+class RectangularBox(
+    val length: Double,
+    val width: Double,
+    val height: Double,
+) : Box() {
+    override fun surfaceArea(): Double {
+        return 2 * (length * width + width * height + height * length)
     }
 }
 
-class Fox(name: String) : Animal(name) {
-    override fun eat() {
-        println("$name -> ест ягоды")
-    }
-}
-
-class Dog(name: String) : Animal(name) {
-    override fun eat() {
-        println("$name -> грызет кости")
-    }
-}
-
-class Cat(name: String) : Animal(name) {
-    override fun eat() {
-        println("$name -> ест рыбу")
+class Cube(
+    val edge: Double,
+) : Box() {
+    override fun surfaceArea(): Double {
+        return 6 * edge * edge
     }
 }
 
 fun main() {
-    val animals: List<Animal> = listOf(
-        Fox("Алиса"),
-        Dog("Бобик"),
-        Cat("Мурка"),
-    )
+    val rectangular = RectangularBox(2.0, 3.0, 4.0)
+    val cube = Cube(5.0)
 
-    for (animal in animals) {
-        animal.eat()
-    }
+    println("Площадь прямоугольной коробки: ${rectangular.surfaceArea()}")
+    println("Площадь кубической коробки: ${cube.surfaceArea()}")
 }
