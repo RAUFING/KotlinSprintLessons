@@ -1,8 +1,9 @@
 package org.example
 
 abstract class Animal(val name: String) {
-    open fun eat() {
-        println("$name -> ест")
+    abstract fun eat()
+    fun sleep() {
+        println("Zzz....")
     }
 }
 
@@ -14,7 +15,7 @@ class Fox(name: String) : Animal(name) {
 
 class Dog(name: String) : Animal(name) {
     override fun eat() {
-        println("$name -> ест кости")
+        println("$name -> грызет кости")
     }
 }
 
