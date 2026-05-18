@@ -1,35 +1,35 @@
 package org.example
 
-class Parcel(
-    val trackingNumber: String,
-    initialLocation: String,
+class User(
+    initialLogin: String,
+    initialPassword: String,
 ) {
-    var location: String = initialLocation
+    var login: String = initialLogin
         set(value) {
             field = value
-            moveCount++
+            println("Логин успешно изменён")
         }
 
-    var moveCount: Int = 0
-        private set
+    var password: String = initialPassword
+        get() = "*".repeat(field.length)
+        set(value) {
+            println("Вы не можете изменить пароль")
+        }
 }
 
 fun main() {
-    val parcel = Parcel("TK12345", "Склад отправителя")
+    val user = User("android_dev", "qwerty123")
 
-    println("Номер посылки: ${parcel.trackingNumber}")
-    println("Местоположение: ${parcel.location}")
-    println("Перемещений: ${parcel.moveCount}")
+    println("Логин: ${user.login}")
+    println("Пароль: ${user.password}")
 
-    println("\nПосылка прибыла в промежуточный пункт...")
-    parcel.location = "Сортировочный центр Казань"
+    println("\nПопытка сменить пароль...")
+    user.password = "new_password"
 
-    println("Местоположение: ${parcel.location}")
-    println("Перемещений: ${parcel.moveCount}")
+    println("\nПопытка сменить логин...")
+    user.login = "new_login"
 
-    println("\nПосылка прибыла в пункт выдачи...")
-    parcel.location = "Пункт выдачи №5"
-
-    println("Местоположение: ${parcel.location}")
-    println("Перемещений: ${parcel.moveCount}")
+    println("\nПосле попыток:")
+    println("Логин: ${user.login}")
+    println("Пароль: ${user.password}")
 }
