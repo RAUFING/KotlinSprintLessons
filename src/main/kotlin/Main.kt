@@ -1,31 +1,20 @@
 package org.example
 
-abstract class Box {
-    abstract fun surfaceArea(): Double
-}
-
-class RectangularBox(
-    val length: Double,
-    val width: Double,
-    val height: Double,
-) : Box() {
-    override fun surfaceArea(): Double {
-        return 2 * (length * width + width * height + height * length)
-    }
-}
-
-class Cube(
-    val edge: Double,
-) : Box() {
-    override fun surfaceArea(): Double {
-        return 6 * edge * edge
-    }
+class Screen {
+    fun draw(x: Int, y: Int): String = "Нарисована точка с координатами ($x, $y)"
+    fun draw(x: Float, y: Float): String = "Нарисована точка с координатами ($x, $y)"
+    fun draw(x: Int, y: Int, radius: Int): String = "Нарисован круг с центром ($x, $y) и радиусом $radius"
+    fun draw(x: Float, y: Float, radius: Float): String = "Нарисован круг с центром ($x, $y) и радиусом $radius"
+    fun draw(x: Int, y: Int, width: Int, height: Int): String = "Нарисован квадрат с углом ($x, $y), шириной $width и высотой $height"
+    fun draw(x: Float, y: Float, width: Float, height: Float): String = "Нарисован квадрат с углом ($x, $y), шириной $width и высотой $height"
 }
 
 fun main() {
-    val rectangular: Box = RectangularBox(2.0, 3.0, 4.0)
-    val cube = Cube(5.0)
-
-    println("Площадь прямоугольной коробки: ${rectangular.surfaceArea()}")
-    println("Площадь кубической коробки: ${cube.surfaceArea()}")
+    val screen = Screen()
+    println(screen.draw(10, 20))
+    println(screen.draw(10.5f, 20.5f))
+    println(screen.draw(5, 5, 10))
+    println(screen.draw(5.5f, 5.5f, 10.5f))
+    println(screen.draw(0, 0, 30, 40))
+    println(screen.draw(0.0f, 0.0f, 30.5f, 40.5f))
 }
