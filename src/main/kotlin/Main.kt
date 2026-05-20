@@ -2,19 +2,15 @@ package org.example
 
 class Spaceship {
     fun takeOff() {
-        println("Корабль взлетает")
+        // TODO("Реализовать логику взлёта")
     }
 
     fun land() {
-        println("Корабль приземляется")
+        TODO("Метод приземления ещё не реализован")
     }
 
     fun shootAsteroid() {
-        TODO("Нужна дополнительная логика для стрельбы по астероидам")
-    }
-
-    fun hyperjump() {
-        throw NotImplementedError("Метод гиперпрыжка ещё не реализован")
+        TODO("Метод отстрела астероида ещё не реализован")
     }
 }
 
@@ -22,5 +18,4 @@ fun main() {
     val ship = Spaceship()
     ship.takeOff()
     ship.land()
-    ship.shootAsteroid()
 }
