@@ -1,21 +1,38 @@
 package org.example
 
-class Spaceship {
-    fun takeOff() {
-        // TODO("Добавить логику взлёта")
+enum class AmmoType(val damage: Int) {
+    BLUE(5),
+    GREEN(10),
+    RED(20),
+}
+
+class Tank {
+    private var currentAmmo: AmmoType? = null
+
+    fun loadAmmo(ammo: AmmoType) {
+        currentAmmo = ammo
+        println("Танк заряжен патронами типа ${ammo.name} (урон: ${ammo.damage})")
     }
 
-    fun land() {
-        TODO("Метод приземления ещё не реализован")
-    }
-
-    fun shootAsteroid() {
-        println("Корабль отстреливается от астероида")
+    fun shoot() {
+        if (currentAmmo == null) {
+            println("Танк не заряжен!")
+        } else {
+            println("Выстрел! Нанесён урон: ${currentAmmo?.damage}")
+        }
     }
 }
 
 fun main() {
-    val ship = Spaceship()
-    ship.takeOff()
-    ship.shootAsteroid()
+    val tank = Tank()
+    tank.shoot()
+
+    tank.loadAmmo(AmmoType.BLUE)
+    tank.shoot()
+
+    tank.loadAmmo(AmmoType.GREEN)
+    tank.shoot()
+
+    tank.loadAmmo(AmmoType.RED)
+    tank.shoot()
 }
