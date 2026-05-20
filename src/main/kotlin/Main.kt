@@ -1,10 +1,21 @@
 package org.example
 
+class Spaceship {
+    fun takeOff() {
+        // TODO("Добавить логику взлёта")
+    }
+
+    fun land() {
+        TODO("Метод приземления ещё не реализован")
+    }
+
+    fun shootAsteroid() {
+        println("Корабль отстреливается от астероида")
+    }
+}
+
 fun main() {
-    val userName = "Иван"
-    // Объявляем переменные
-    var greeting = "Доброе утро"
-    println("$greeting, $userName!")
-    greeting = "Добрый вечер"
-    println("$greeting, $userName!")
+    val ship = Spaceship()
+    ship.takeOff()
+    ship.shootAsteroid()
 }
