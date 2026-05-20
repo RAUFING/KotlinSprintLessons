@@ -2,7 +2,7 @@ package org.example
 
 class Spaceship {
     fun takeOff() {
-        // TODO("Реализовать логику взлёта")
+        // TODO("Добавить логику взлёта")
     }
 
     fun land() {
@@ -10,12 +10,12 @@ class Spaceship {
     }
 
     fun shootAsteroid() {
-        TODO("Метод отстрела астероида ещё не реализован")
+        println("Корабль отстреливается от астероида")
     }
 }
 
 fun main() {
     val ship = Spaceship()
     ship.takeOff()
-    ship.land()
+    ship.shootAsteroid()
 }
