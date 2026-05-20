@@ -1,10 +1,15 @@
 package org.example
 
+enum class FishType(val fishName: String) {
+    GUPPY("Гуппи"),
+    ANGELFISH("Скалярия"),
+    GOLDFISH("Золотая рыбка"),
+    SIAMESE_FIGHTING_FISH("Петушок"),
+}
+
 fun main() {
-    val userName = "Иван"
-    // Объявляем переменные
-    var greeting = "Доброе утро"
-    println("$greeting, $userName!")
-    greeting = "Добрый вечер"
-    println("$greeting, $userName!")
+    println("Вы можете добавить в аквариум следующих рыб:")
+    for (fish in FishType.entries) {
+        println("- ${fish.fishName}")
+    }
 }
