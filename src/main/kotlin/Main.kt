@@ -1,11 +1,15 @@
 package org.example
 
-enum class Category(private val displayName: String) {
-    CLOTHING("Одежда"),
-    STATIONERY("Канцелярские товары"),
-    OTHER("Разное");
+enum class Category {
+    CLOTHING,
+    STATIONERY,
+    OTHER;
 
-    fun getDisplayName(): String = displayName
+    fun getDisplayName(): String = when (this) {
+        CLOTHING -> "Одежда"
+        STATIONERY -> "Канцелярские товары"
+        OTHER -> "Разное"
+    }
 }
 
 class Product(
