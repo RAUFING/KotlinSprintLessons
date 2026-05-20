@@ -1,31 +1,26 @@
 package org.example
 
-enum class Category(private val displayName: String) {
-    CLOTHING("Одежда"),
-    STATIONERY("Канцелярские товары"),
-    OTHER("Разное");
+class Spaceship {
+    fun takeOff() {
+        println("Корабль взлетает")
+    }
 
-    fun getDisplayName(): String = displayName
-}
+    fun land() {
+        println("Корабль приземляется")
+    }
 
-class Product(
-    val name: String,
-    val id: Int,
-    val category: Category,
-) {
-    fun printInfo() {
-        println("Товар: $name, ID: $id, Категория: ${category.getDisplayName()}")
+    fun shootAsteroid() {
+        TODO("Нужна дополнительная логика для стрельбы по астероидам")
+    }
+
+    fun hyperjump() {
+        throw NotImplementedError("Метод гиперпрыжка ещё не реализован")
     }
 }
 
 fun main() {
-    val products = listOf(
-        Product("Футболка", 1, Category.CLOTHING),
-        Product("Ручка", 2, Category.STATIONERY),
-        Product("Кружка", 3, Category.OTHER),
-    )
-
-    for (product in products) {
-        product.printInfo()
-    }
+    val ship = Spaceship()
+    ship.takeOff()
+    ship.land()
+    ship.shootAsteroid()
 }
