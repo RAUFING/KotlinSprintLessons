@@ -1,10 +1,18 @@
 package org.example
 
+class Player(
+    val name: String,
+    val hasKey: Boolean,
+)
+
 fun main() {
-    val userName = "Иван"
-    // Объявляем переменные
-    var greeting = "Доброе утро"
-    println("$greeting, $userName!")
-    greeting = "Добрый вечер"
-    println("$greeting, $userName!")
+    val tryOpenDoor: (Player) -> String = { player ->
+        if (player.hasKey) "Игрок открыл дверь" else "Дверь заперта"
+    }
+
+    val playerWithKey = Player("Герой", true)
+    val playerWithoutKey = Player("Путник", false)
+
+    println(tryOpenDoor(playerWithKey))
+    println(tryOpenDoor(playerWithoutKey))
 }
