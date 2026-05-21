@@ -2,17 +2,17 @@ package org.example
 
 class Player(
     val name: String,
-    val maxHealth: Int,
-    var currentHealth: Int,
+    val hasKey: Boolean,
 )
 
 fun main() {
-    val healPotion: (Player) -> Unit = { player ->
-        player.currentHealth = player.maxHealth
-        println("${player.name} выпил лечебное зелье! Здоровье восстановлено до ${player.currentHealth}/${player.maxHealth}")
+    val tryOpenDoor: (Player) -> String = { player ->
+        if (player.hasKey) "Игрок открыл дверь" else "Дверь заперта"
     }
 
-    val player = Player("Герой", 100, 30)
-    println("До лечения: ${player.currentHealth}/${player.maxHealth}")
-    healPotion(player)
+    val playerWithKey = Player("Герой", true)
+    val playerWithoutKey = Player("Путник", false)
+
+    println(tryOpenDoor(playerWithKey))
+    println(tryOpenDoor(playerWithoutKey))
 }
