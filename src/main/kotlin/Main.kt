@@ -8,7 +8,7 @@ fun main() {
     }
 
     for (i in items.indices) {
-        if (i % 2 == 0) {
+        if ((i + 1) % 2 == 0) {
             clickActions[i]()
         }
     }
