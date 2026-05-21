@@ -1,6 +1,7 @@
 package org.example
 
-fun main(){
-    val greet: (String) -> String = { username -> "С наступающим Новым Годом, ${username}!" }
-    println(greet("Анна"))
+fun main() {
+    val username = "Анна"
+    val greet: () -> String = { "С наступающим Новым Годом, $username!" }
+    println(greet())
 }
