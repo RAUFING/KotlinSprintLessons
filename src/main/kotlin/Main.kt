@@ -2,7 +2,8 @@ package org.example
 
 enum class Gender {
     MALE,
-    FEMALE;
+    FEMALE,
+    ;
 
     companion object {
         fun fromString(input: String): Gender? = when (input.lowercase()) {
@@ -16,7 +17,15 @@ enum class Gender {
 class Person(
     val name: String,
     val gender: Gender,
-)
+) {
+    fun printInfo() {
+        val genderDisplay = when (gender) {
+            Gender.MALE -> "Мужской"
+            Gender.FEMALE -> "Женский"
+        }
+        println("$name — $genderDisplay")
+    }
+}
 
 fun main() {
     println("Картотека v1.0")
@@ -24,38 +33,34 @@ fun main() {
     println("Доступные значения пола: М/Муж/Male или Ж/Жен/Female")
     println()
 
-    val people = mutableListOf<Person>()
+    val people = buildList {
+        for (i in 1..5) {
+            while (true) {
+                println("Запись $i из 5:")
+                val input = readln().trim()
+                val parts = input.split(" ")
 
-    for (i in 1..5) {
-        while (true) {
-            println("Запись $i из 5:")
-            val input = readln().trim()
-            val parts = input.split(" ")
+                if (parts.size != 2) {
+                    println("Ошибка! Введите имя и пол через пробел (например: Анна Ж)")
+                    continue
+                }
 
-            if (parts.size != 2) {
-                println("Ошибка! Введите имя и пол через пробел (например: Анна Ж)")
-                continue
+                val name = parts[0]
+                val gender = Gender.fromString(parts[1])
+
+                if (gender == null) {
+                    println("Ошибка! Неверное значение пола. Используйте: М/Муж/Male или Ж/Жен/Female")
+                    continue
+                }
+
+                add(Person(name, gender))
+                break
             }
-
-            val name = parts[0]
-            val gender = Gender.fromString(parts[1])
-
-            if (gender == null) {
-                println("Ошибка! Неверное значение пола. Используйте: М/Муж/Male или Ж/Жен/Female")
-                continue
-            }
-
-            people.add(Person(name, gender))
-            break
         }
     }
 
     println("\nДанные картотеки:")
     for (person in people) {
-        val genderDisplay = when (person.gender) {
-            Gender.MALE -> "Мужской"
-            Gender.FEMALE -> "Женский"
-        }
-        println("${person.name} — $genderDisplay")
+        person.printInfo()
     }
 }
