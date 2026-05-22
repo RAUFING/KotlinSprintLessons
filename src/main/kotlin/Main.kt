@@ -1,12 +1,10 @@
 package org.example
 
-fun String.vowelCount(): Int {
-    val vowels = setOf('a', 'e', 'i', 'o', 'u', 'y', 'а', 'е', 'ё', 'и', 'о', 'у', 'ы', 'э', 'ю', 'я')
-    return count { it.lowercaseChar() in vowels }
+fun List<Int>.evenNumbersSum(): Int {
+    return filter { it % 2 == 0 }.sum()
 }
 
 fun main() {
-    println("hello".vowelCount())
-    println("Kotlin".vowelCount())
-    println("Привет".vowelCount())
+    val numbers = listOf(1, 2, 3, 4, 5, 6)
+    println(numbers.evenNumbersSum())
 }
