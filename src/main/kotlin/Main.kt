@@ -1,17 +1,15 @@
 package org.example
 
-class Player(
-    val name: String,
-    var currentHealth: Int,
-    val maxHealth: Int
-)
+import java.io.File
 
-fun Player.isHealthy(): Boolean = currentHealth == maxHealth
+fun File.prependWord(word: String) {
+    val lowercaseWord = word.lowercase()
+    val existingContent = if (exists()) readText() else ""
+    writeText("$lowercaseWord\n$existingContent")
+}
 
 fun main() {
-    val player = Player("Герой", 100, 100)
-    println(player.isHealthy())  // true
-
-    player.currentHealth = 50
-    println(player.isHealthy())  // false
+    val file = File("dictionary.txt")
+    file.prependWord("Кот")
+    file.prependWord("Собака")
 }
