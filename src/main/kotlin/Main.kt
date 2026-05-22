@@ -1,10 +1,13 @@
 package org.example
 
 fun main() {
-    val userName = "Иван"
-    // Объявляем переменные
-    var greeting = "Доброе утро"
-    println("$greeting, $userName!")
-    greeting = "Добрый вечер"
-    println("$greeting, $userName!")
+    val items = listOf("Кнопка", "Меню", "Профиль", "Настройки", "Помощь")
+
+    val clickActions: List<() -> Unit> = items.map { item ->
+        { println("Нажат элемент $item") }
+    }
+
+    clickActions.forEachIndexed { index, action ->
+        if ((index + 1) % 2 == 0) action()
+    }
 }
