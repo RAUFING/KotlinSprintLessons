@@ -1,15 +1,15 @@
 package org.example
 
-import java.io.File
-
-fun File.prependWord(word: String) {
-    val lowercaseWord = word.lowercase()
-    val existingContent = if (exists()) readText() else ""
-    writeText("$lowercaseWord\n$existingContent")
+fun Map<String, Int>.maxCategory(): String? {
+    return maxByOrNull { it.value }?.key
 }
 
 fun main() {
-    val file = File("dictionary.txt")
-    file.prependWord("Кот")
-    file.prependWord("Собака")
+    val skills = mapOf(
+        "Сила" to 10,
+        "Ловкость" to 25,
+        "Интеллект" to 15,
+        "Выносливость" to 25,
+    )
+    println(skills.maxCategory())
 }
