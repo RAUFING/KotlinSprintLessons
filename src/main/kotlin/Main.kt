@@ -1,10 +1,15 @@
 package org.example
 
+import java.io.File
+
+fun File.prependWord(word: String) {
+    val lowercaseWord = word.lowercase()
+    val existingContent = if (exists()) readText() else ""
+    writeText("$lowercaseWord\n$existingContent")
+}
+
 fun main() {
-    val userName = "Иван"
-    // Объявляем переменные
-    var greeting = "Доброе утро"
-    println("$greeting, $userName!")
-    greeting = "Добрый вечер"
-    println("$greeting, $userName!")
+    val file = File("dictionary.txt")
+    file.prependWord("Кот")
+    file.prependWord("Собака")
 }
