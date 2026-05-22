@@ -1,10 +1,17 @@
 package org.example
 
-fun List<Int>.evenNumbersSum(): Int {
-    return filter { it % 2 == 0 }.sum()
-}
+class Player(
+    val name: String,
+    var currentHealth: Int,
+    val maxHealth: Int
+)
+
+fun Player.isHealthy(): Boolean = currentHealth == maxHealth
 
 fun main() {
-    val numbers = listOf(1, 2, 3, 4, 5, 6)
-    println(numbers.evenNumbersSum())
+    val player = Player("Герой", 100, 100)
+    println(player.isHealthy())  // true
+
+    player.currentHealth = 50
+    println(player.isHealthy())  // false
 }
