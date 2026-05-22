@@ -9,16 +9,11 @@ class Robot {
         "Давай работать",
     )
 
-    private var modifier: ((String) -> String)? = null
+    private var modifier: (String) -> String = { it }
 
     fun say() {
         val phrase = phrases.random()
-        val result = if (modifier != null) {
-            modifier!!(phrase)
-        } else {
-            phrase
-        }
-        println(result)
+        println(modifier(phrase))
     }
 
     fun setModifier(mod: (String) -> String) {
