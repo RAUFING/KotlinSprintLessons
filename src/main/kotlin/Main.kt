@@ -1,10 +1,17 @@
 package org.example
 
+class Player(
+    val name: String,
+    var currentHealth: Int,
+    val maxHealth: Int
+)
+
+fun Player.isHealthy(): Boolean = currentHealth == maxHealth
+
 fun main() {
-    val userName = "Иван"
-    // Объявляем переменные
-    var greeting = "Доброе утро"
-    println("$greeting, $userName!")
-    greeting = "Добрый вечер"
-    println("$greeting, $userName!")
+    val player = Player("Герой", 100, 100)
+    println(player.isHealthy())  // true
+
+    player.currentHealth = 50
+    println(player.isHealthy())  // false
 }
