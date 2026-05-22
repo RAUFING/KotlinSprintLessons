@@ -1,10 +1,15 @@
 package org.example
 
+fun Map<String, Int>.maxCategory(): String? {
+    return maxByOrNull { it.value }?.key
+}
+
 fun main() {
-    val userName = "Иван"
-    // Объявляем переменные
-    var greeting = "Доброе утро"
-    println("$greeting, $userName!")
-    greeting = "Добрый вечер"
-    println("$greeting, $userName!")
+    val skills = mapOf(
+        "Сила" to 10,
+        "Ловкость" to 25,
+        "Интеллект" to 15,
+        "Выносливость" to 25,
+    )
+    println(skills.maxCategory())
 }
