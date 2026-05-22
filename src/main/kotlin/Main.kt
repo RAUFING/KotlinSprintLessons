@@ -7,9 +7,7 @@ fun main() {
         { println("Нажат элемент $item") }
     }
 
-    for (i in items.indices) {
-        if ((i + 1) % 2 == 0) {
-            clickActions[i]()
-        }
+    clickActions.forEachIndexed { index, action ->
+        if ((index + 1) % 2 == 0) action()
     }
 }
