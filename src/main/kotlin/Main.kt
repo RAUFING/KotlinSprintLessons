@@ -1,10 +1,24 @@
 package org.example
 
+class MainScreenViewModel {
+    data class MainScreenState(
+        val data: String? = null,
+        val isLoading: Boolean = false,
+    )
+
+    var mainScreenState: MainScreenState = MainScreenState()
+        private set
+
+    fun loadData() {
+        mainScreenState = mainScreenState.copy(isLoading = true)
+        mainScreenState = mainScreenState.copy(data = "Данные с сервера загружены", isLoading = false)
+    }
+}
+
 fun main() {
-    val userName = "Иван"
-    // Объявляем переменные
-    var greeting = "Доброе утро"
-    println("$greeting, $userName!")
-    greeting = "Добрый вечер"
-    println("$greeting, $userName!")
+    val viewModel = MainScreenViewModel()
+    println("Начальное состояние: ${viewModel.mainScreenState}")
+
+    viewModel.loadData()
+    println("Конечное состояние: ${viewModel.mainScreenState}")
 }
