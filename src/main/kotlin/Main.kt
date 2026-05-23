@@ -1,24 +1,17 @@
 package org.example
 
-class RegularBookV2(
-    val title: String,
-    val author: String,
-)
-
-data class DataBookV2(
-    val title: String,
-    val author: String,
+data class User(
+    val name: String,
+    val age: Int,
+    val email: String,
 )
 
 fun main() {
-    val regular = RegularBookV2("Война и мир", "Толстой")
-    val data = DataBookV2("Война и мир", "Толстой")
+    val user = User("Анна", 25, "anna@example.com")
 
-    // Обычный класс по умолчанию использует toString() из Any,
-    // который выводит имя класса и хеш-код объекта (адрес в памяти).
-    println(regular)
+    val (name, age, email) = user
 
-    // Data class автоматически переопределяет toString()
-    // и выводит значения всех свойств в читаемом формате.
-    println(data)
+    println("Имя: $name")
+    println("Возраст: $age")
+    println("Email: $email")
 }
