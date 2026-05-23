@@ -1,24 +1,26 @@
 package org.example
 
-data class MainScreenState(
-    val data: String? = null,
-    val isLoading: Boolean = false,
+import java.time.LocalDateTime
+
+data class GalacticGuide(
+    val name: String,
+    val description: String,
+    val dateTime: LocalDateTime,
+    val distanceFromEarth: Double,
 )
 
-class MainScreenViewModel {
-    var mainScreenState: MainScreenState = MainScreenState()
-        private set
-
-    fun loadData() {
-        mainScreenState = mainScreenState.copy(isLoading = true)
-        mainScreenState = mainScreenState.copy(data = "Данные с сервера загружены", isLoading = false)
-    }
-}
-
 fun main() {
-    val viewModel = MainScreenViewModel()
-    println("Начальное состояние: ${viewModel.mainScreenState}")
+    val alphaCentauri = GalacticGuide(
+        name = "Alpha Centauri",
+        description = "Ближайшая к Солнцу звёздная система",
+        dateTime = LocalDateTime.of(2026, 5, 23, 12, 0),
+        distanceFromEarth = 4.37,
+    )
 
-    viewModel.loadData()
-    println("Конечное состояние: ${viewModel.mainScreenState}")
+    val (name, description, dateTime, distanceFromEarth) = alphaCentauri
+
+    println("Название: $name")
+    println("Описание: $description")
+    println("Дата и время: $dateTime")
+    println("Расстояние от Земли: $distanceFromEarth св. лет")
 }
