@@ -1,7 +1,7 @@
 package org.example
 
 data class MainScreenState(
-    val data: String = "",
+    val data: String? = null,
     val isLoading: Boolean = false,
 )
 
@@ -10,8 +10,8 @@ class MainScreenViewModel {
         private set
 
     fun loadData() {
-        mainScreenState = MainScreenState(isLoading = true)
-        mainScreenState = MainScreenState(data = "Данные с сервера загружены", isLoading = false)
+        mainScreenState = mainScreenState.copy(isLoading = true)
+        mainScreenState = mainScreenState.copy(data = "Данные с сервера загружены", isLoading = false)
     }
 }
 
