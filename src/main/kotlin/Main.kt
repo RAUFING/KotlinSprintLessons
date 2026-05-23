@@ -1,11 +1,11 @@
 package org.example
 
-data class MainScreenState(
-    val data: String? = null,
-    val isLoading: Boolean = false,
-)
-
 class MainScreenViewModel {
+    data class MainScreenState(
+        val data: String? = null,
+        val isLoading: Boolean = false,
+    )
+
     var mainScreenState: MainScreenState = MainScreenState()
         private set
 
